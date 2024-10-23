@@ -41,14 +41,14 @@ function App() {
                 <Route path='/pin' element={ <Pin /> } />
                 <Route path='/user' element={ <UserDashBoard /> }>
                   <Route path='' element={ <Home /> } />
-                  <Route path='songs' element={ user ? <Choir /> : <Logout /> } />
-                  <Route path='ann' element={ user ? <Announcements /> : <Logout /> } />
-                  <Route path='unpaid' element={ user ? <Services /> : <Logout /> } />
-                  <Route path='members' element={ user ? <Members /> : <Logout /> } />
-                  <Route path='events' element={ user ? <Events /> : <Logout /> } />
-                  <Route path='punish' element={ user ? <Punish /> : <Logout /> } />
-                  <Route path='attand' element={ user ? <Attendance /> : <Logout /> } />
-                  <Route path='manage' element={ user ? <ManageFines /> : <Logout /> } />
+                  <Route path='songs' element={ user != null || user != undefined ? <Choir /> : <Logout /> } />
+                  <Route path='ann' element={ user != null || user != undefined ? <Announcements /> : <Logout /> } />
+                  <Route path='unpaid' element={ user != null || user != undefined ? <Services /> : <Logout /> } />
+                  <Route path='members' element={ user != null || user != undefined ? <Members /> : <Logout /> } />
+                  <Route path='events' element={ user != null || user != undefined ? <Events /> : <Logout /> } />
+                  <Route path='punish' element={ user != null || user != undefined ? <Punish /> : <Logout /> } />
+                  <Route path='attand' element={ user != null || user != undefined ? <Attendance /> : <Logout /> } />
+                  <Route path='manage' element={ user != null || user != undefined ? <ManageFines /> : <Logout /> } />
                 </Route>
                 <Route path='/logout' element={ <Logout /> } />
               </Routes>
