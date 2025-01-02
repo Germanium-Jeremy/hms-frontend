@@ -19,41 +19,42 @@ import { PopupProvider } from './components/context/popup'
 import { UserProvider } from './components/context/UserContext'
 import { ToastContainer } from 'react-toastify'
 import Logout from './components/Logout'
+import { FinesProvider } from './components/context/FinesContext'
+import { SongsProvider } from './components/context/SongsContext'
 
 function App() {
-  let user = null
-  if (JSON.parse(localStorage.getItem("HMS_USER"))) {
-    user = JSON.parse(localStorage.getItem("HMS_USER"))
-    console.log(user)
-  }
   return (
     <>
         <BrowserRouter>
           <div>
-          <UserProvider>
-            <PopupProvider>
-              <Routes>
-                <Route path='/' element={ <Auth /> }>
-                  <Route path='' element={ <Login /> } />
-                  <Route path='signup' element={ <Signup /> } />
-                </Route>
-                <Route path='/role' element={ <Role /> } />
-                <Route path='/pin' element={ <Pin /> } />
-                <Route path='/user' element={ <UserDashBoard /> }>
-                  <Route path='' element={ <Home /> } />
-                  <Route path='songs' element={ user != null || user != undefined ? <Choir /> : <Logout /> } />
-                  <Route path='ann' element={ user != null || user != undefined ? <Announcements /> : <Logout /> } />
-                  <Route path='unpaid' element={ user != null || user != undefined ? <Services /> : <Logout /> } />
-                  <Route path='members' element={ user != null || user != undefined ? <Members /> : <Logout /> } />
-                  <Route path='events' element={ user != null || user != undefined ? <Events /> : <Logout /> } />
-                  <Route path='punish' element={ user != null || user != undefined ? <Punish /> : <Logout /> } />
-                  <Route path='attand' element={ user != null || user != undefined ? <Attendance /> : <Logout /> } />
-                  <Route path='manage' element={ user != null || user != undefined ? <ManageFines /> : <Logout /> } />
-                </Route>
-                <Route path='/logout' element={ <Logout /> } />
-              </Routes>
-            </PopupProvider>
-          </UserProvider>
+            {/* <SongsProvider> */}
+              <UserProvider>
+                {/* <FinesProvider> */}
+                  <PopupProvider>
+                    <Routes>
+                      <Route path='/' element={ <Auth /> }>
+                        <Route path='' element={ <Login /> } />
+                        <Route path='signup' element={ <Signup /> } />
+                      </Route>
+                      <Route path='/role' element={ <Role /> } />
+                      <Route path='/pin' element={ <Pin /> } />
+                      <Route path='/user' element={ <UserDashBoard /> }>
+                        <Route path='' element={ <Home /> } />
+                        <Route path='songs'  element={ <Choir /> } />
+                        <Route path='ann' element={ <Announcements /> } />
+                        <Route path='unpaid' element={ <Services /> } />
+                        <Route path='members' element={ <Members /> } />
+                        <Route path='events' element={ <Events /> } />
+                        <Route path='punish' element={ <Punish /> } />
+                        <Route path='attand' element={ <Attendance /> } />
+                        <Route path='manage' element={ <ManageFines /> } />
+                      </Route>
+                      <Route path='/logout' element={ <Logout /> } />
+                    </Routes>
+                  </PopupProvider>
+                {/* </FinesProvider> */}
+              </UserProvider>
+            {/* </SongsProvider> */}
           </div>
         </BrowserRouter>
         <ToastContainer hideProgressBar={true} pauseOnHover autoClose={2000} />

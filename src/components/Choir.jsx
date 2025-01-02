@@ -4,8 +4,10 @@ import Popups from './Popups'
 import { PopopContext } from './context/popup'
 import SortBtn from './SortBtn'
 import AddSong from './forms/AddSong'
+// import { SongsContext } from './context/SongsContext'
 
 const Choir = () => {
+     // const { songs } = useContext(SongsContext)
      const songs = [
           { title: "Song 1", dateCreated: "Mon, 21 Jun 2020", lylics: ["This are the lylics of the song. This are the lylics of the song", "This are the lylics of the song. This are the lylics of the song"] },
           { title: "Song 2", dateCreated: "Mon, 22 Jul 2020", lylics: ["This are the lylics of the song. This are the lylics of the song", "This are the lylics of the song. This are the lylics of the song", "This are the lylics of the song. This are the lylics of the song"] },
