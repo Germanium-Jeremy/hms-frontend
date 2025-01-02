@@ -19,8 +19,8 @@ import { PopupProvider } from './components/context/popup'
 import { UserProvider } from './components/context/UserContext'
 import { ToastContainer } from 'react-toastify'
 import Logout from './components/Logout'
-import { FinesProvider } from './components/context/FinesContext'
-import { SongsProvider } from './components/context/SongsContext'
+// import { FinesProvider } from './components/context/FinesContext'
+// import { SongsProvider } from './components/context/SongsContext'
 
 function App() {
   return (
@@ -40,14 +40,14 @@ function App() {
                       <Route path='/pin' element={ <Pin /> } />
                       <Route path='/user' element={ <UserDashBoard /> }>
                         <Route path='' element={ <Home /> } />
-                        <Route path='songs'  element={ <Choir /> } />
+                        {/* <Route path='songs'  element={ <Choir /> } />
                         <Route path='ann' element={ <Announcements /> } />
                         <Route path='unpaid' element={ <Services /> } />
                         <Route path='members' element={ <Members /> } />
                         <Route path='events' element={ <Events /> } />
                         <Route path='punish' element={ <Punish /> } />
                         <Route path='attand' element={ <Attendance /> } />
-                        <Route path='manage' element={ <ManageFines /> } />
+                        <Route path='manage' element={ <ManageFines /> } /> */}
                       </Route>
                       <Route path='/logout' element={ <Logout /> } />
                     </Routes>
