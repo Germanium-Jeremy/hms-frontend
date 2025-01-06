@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import ReactSvg from '../assets/react.svg'
 import { UserContext } from './context/UserContext'
-import User from '../assets/User.gif'
+import User from '../assets/User.png'
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const UserData = () => {
