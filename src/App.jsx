@@ -19,17 +19,15 @@ import { PopupProvider } from './components/context/popup'
 import { UserProvider } from './components/context/UserContext'
 import { ToastContainer } from 'react-toastify'
 import Logout from './components/Logout'
-// import { FinesProvider } from './components/context/FinesContext'
-// import { SongsProvider } from './components/context/SongsContext'
+import { FinesProvider } from './components/context/FinesContext'
 
 function App() {
   return (
     <>
         <BrowserRouter>
           <div>
-            {/* <SongsProvider> */}
               <UserProvider>
-                {/* <FinesProvider> */}
+                <FinesProvider>
                   <PopupProvider>
                     <Routes>
                       <Route path='/' element={ <Auth /> }>
@@ -40,8 +38,8 @@ function App() {
                       <Route path='/pin' element={ <Pin /> } />
                       <Route path='/user' element={ <UserDashBoard /> }>
                         <Route path='' element={ <Home /> } />
-                        {/* <Route path='songs'  element={ <Choir /> } />
-                        <Route path='ann' element={ <Announcements /> } />
+                        <Route path='songs'  element={ <Choir /> } />
+                        {/* <Route path='ann' element={ <Announcements /> } />
                         <Route path='unpaid' element={ <Services /> } />
                         <Route path='members' element={ <Members /> } />
                         <Route path='events' element={ <Events /> } />
@@ -52,9 +50,8 @@ function App() {
                       <Route path='/logout' element={ <Logout /> } />
                     </Routes>
                   </PopupProvider>
-                {/* </FinesProvider> */}
+                </FinesProvider>
               </UserProvider>
-            {/* </SongsProvider> */}
           </div>
         </BrowserRouter>
         <ToastContainer hideProgressBar={true} pauseOnHover autoClose={2000} />

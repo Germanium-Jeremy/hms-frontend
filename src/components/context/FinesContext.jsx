@@ -8,9 +8,9 @@ export const FinesContext = createContext(null)
 
 export const FinesProvider = ({ children }) => {
      const { loggedInUser } = useContext(UserContext)
-     // const [userFines, setUserFines] = useState([])
+     const [userFines, setUserFines] = useState([])
      const getUserFines = async () => {
-          axios.get(`${backendApi}/api/fines/user/${loggedInUser._id || JSON.parse(localStorage.getItem("HMS_USER")).userId}`).then(response => {
+          axios.get(`${backendApi}/api/fines/user/${loggedInUser._id || JSON.parse(localStorage.getItem("HMS_USER")).userId || JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
                console.log("Got user fines", response.data)
           }).catch(error => {
                // console.log("Error getting user fines", error)
@@ -18,12 +18,8 @@ export const FinesProvider = ({ children }) => {
                if (error.response.status == 404 && error.response.data.message == "No fines found for this user.") setUserFines(error.response.data.message)
           })
      }
-
-     // useEffect(() => {
-     //      getUserFines()
-     // }, [])
      return (
-          <FinesContext.Provider value={{userFines}}>
+          <FinesContext.Provider value={{userFines, getUserFines}}>
                {children}
           </FinesContext.Provider>
      )

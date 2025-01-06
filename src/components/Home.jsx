@@ -7,7 +7,7 @@ const Home = () => {
      return (
           <>
           <UserData />
-          {/* <UserFinesLittle /> */}
+          <UserFinesLittle />
           <Verse />
           </>
      )

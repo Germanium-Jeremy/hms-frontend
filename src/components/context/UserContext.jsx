@@ -11,17 +11,11 @@ export const UserProvider = ({ children }) => {
      const [loginUsername, setLoginUsername] = useState('')
      const [loginPassword, setLoginPassword] = useState('')
 
-     const [name, setName] = useState('')
-     const [emailSign, setEmailSign] = useState('')
-     const [username, setUsername] = useState('')
-     const [passwordSign, setPasswordSign] = useState('')
-     const [role, setRole] = useState('Choir Member')
-     const [profileImageUrl, setProfile] = useState(null)
-
      const [loading, setLoading] = useState(false)
      const [updateLoading, setUpdateLoading] = useState(false)
 
      const [loggedInUser, setLoggedInUser] = useState([])
+     const [loggedInUserProfile, setLoggedInUserProfile] = useState(null)
 
      const [usernameU, setUpdateUsername] = useState("")
      const [updateEmail, setEmailU] = useState("")
@@ -50,33 +44,6 @@ export const UserProvider = ({ children }) => {
      //           }
      //      })
      // }
-
-     const handleRegister = async (e) => {
-          e.preventDefault();
-          const formData = {
-               name: name,
-               email: emailSign,
-               username: username,
-               password: passwordSign,
-               role: role,
-               profileImage: profileImageUrl,
-          }
-          console.log(formData)
-      
-          try {
-               await axios.post(`${apiUrl}/api/auth/register`, formData, {
-                    headers: {
-                         "Content-Type": "multipart/form-data",
-                    },
-               });
-               setIsAuthenticated(true);
-               navigate("/roles");
-          } catch (error) {
-               // Safely access error response data
-               const errorMessage = error.response?.data?.message || "An unknown error occurred";
-               alert("Registration failed: " + errorMessage);
-          }
-     }
 
      const handleLogin = async (event) => {
           event.preventDefault(), 
@@ -112,10 +79,12 @@ export const UserProvider = ({ children }) => {
 
      const getUserInfo = async() => {
           setLoggedInUser([])
-          axios.get(`${backendApi}/api/users/user/${JSON.parse(localStorage.getItem("HMS_USER")).userId}`).then(response => {
+          axios.get(`${backendApi}/api/users/user/${JSON.parse(localStorage.getItem("HMS_USER")).userId || JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
                setLoggedInUser(response.data)
                setUpdateUsername(response.data.username)
                setEmailU(response.data.email)
+               setLoggedInUserProfile(response.data.profileImageUrl);
+               localStorage.setItem("HMS_USER", JSON.stringify(response.data));
           }).catch(error => {
                setLoggedInUser([])
                console.error(error)
@@ -134,8 +103,7 @@ export const UserProvider = ({ children }) => {
 
      return (
           <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, 
-               setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, setName, setEmailSign, setUsername, setPasswordSign, 
-               setRole, setProfile, name, emailSign, username, passwordSign, role, profileImageUrl, handleRegister }}>
+               setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile }}>
                { children }
           </UserContext.Provider>
      )
