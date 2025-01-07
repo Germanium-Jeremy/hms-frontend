@@ -39,13 +39,13 @@ function App() {
                       <Route path='/user' element={ <UserDashBoard /> }>
                         <Route path='' element={ <Home /> } />
                         <Route path='songs'  element={ <Choir /> } />
-                        {/* <Route path='ann' element={ <Announcements /> } />
+                        <Route path='ann' element={ <Announcements /> } />
                         <Route path='unpaid' element={ <Services /> } />
                         <Route path='members' element={ <Members /> } />
                         <Route path='events' element={ <Events /> } />
                         <Route path='punish' element={ <Punish /> } />
                         <Route path='attand' element={ <Attendance /> } />
-                        <Route path='manage' element={ <ManageFines /> } /> */}
+                        <Route path='manage' element={ <ManageFines /> } />
                       </Route>
                       <Route path='/logout' element={ <Logout /> } />
                     </Routes>

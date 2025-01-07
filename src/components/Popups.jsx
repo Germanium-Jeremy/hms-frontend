@@ -24,6 +24,9 @@ const Popups = ({setPopup, popupType, popupDetails}) => {
                <div className={`fixed right-[1rem] left-[1rem] top-1/3 bg-white rounded-lg z-[2] p-[2rem]`}>
                     <h2 className={`text-lg font-semibold text-center`}>{popupDetails.announcement.title}</h2>
                     <p className={`text-sm`}>{popupDetails.announcement.desc}</p>
+                    <p className={`text-sm`}>{popupDetails.announcement.timeAt}</p>
+                    <p className={`text-sm`}>{popupDetails.announcement.place}</p>
+                    <p className={`text-sm`}>{popupDetails.announcement.dateOn}</p>
                </div>
           ) : <p>No Popup</p>}
           </>
