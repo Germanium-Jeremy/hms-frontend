@@ -27,7 +27,20 @@ const Services = () => {
           </div>
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Payment Status</h2>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
-               {filteredFInes.map((fine, index) => {
+               {finesUnpaidLoading ? (
+                    <>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[3rem] rounded bg-gray-400 animate-pulse`}></div>
+                    </>
+               ) : unpaidFines.length <= 0 ? (
+                    <div className={`text-lg font-semibold min-h-[5rem] flex justify-center items-center`}>There is no Unpaid Fine To Any User</div>
+               ) : filteredFInes.length <= 0 ? (
+                    <div className={`text-wrap break-words`}>There is no unpaid fine with &quot; { searchQuery } &quot;</div>
+               ) : filteredFInes.map((fine, index) => {
                     return (
                          <div className={`bg-white p-[1rem] flex flex-col gap-[.5rem] rounded-lg shadow-md shadow-gray-400 last-of-type:mb-[1rem] border-l-4 border-[#301B84]`} key={index}>
                               <p className={`font-semibold text-xl`}><span>{index + 1}</span>.&nbsp;&nbsp;<span>{fine.userId.name}</span></p>

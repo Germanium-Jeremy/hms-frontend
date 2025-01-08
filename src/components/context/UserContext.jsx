@@ -21,31 +21,8 @@ export const UserProvider = ({ children }) => {
      const [updateEmail, setEmailU] = useState("")
 
      const [allUsers, setAllUsers] = useState([])
+     const [allUsersLoading, setAllUsersLoading] = useState(true)
      const navigate = useNavigate()
-
-     // const handleRegister = async (event) => {
-     //      event.preventDefault()
-     //      setLoading(true)
-     //      console.log("User Data", name, emailSign, username, passwordSign, role, profileImageUrl)
-
-     //      axios.post(`${backendApi}/api/auth/register`, { name: name, email: emailSign, username: username, password: passwordSign, role: role, profileImageUrl: profileImageUrl ? profileImageUrl : null }, {
-     //           headers: { "Content-Type": "multipart/form-data", }
-     //      }).then(response => {
-     //           setLoading(false)
-     //           localStorage.setItem("HMS_USER", JSON.stringify(response.data))
-     //           toast.success("Account created Successfully")
-     //           setTimeout(() => {
-     //                navigate('/user')
-     //           }, 3000);
-     //      }).catch(error => {
-     //           setLoading(false)
-     //           if (error.response && error.response.data) {
-     //                toast.warn(error.response.data.message);
-     //           } else {
-     //                toast.error('Unable to reach server');
-     //           }
-     //      })
-     // }
 
      const handleLogin = async (event) => {
           event.preventDefault(), 
@@ -107,14 +84,16 @@ export const UserProvider = ({ children }) => {
      const getAllMembers = async () => {
           axios.get(`${backendApi}/api/users`).then(response => {
                setAllUsers(response.data)
+               setAllUsersLoading(false);
           }).catch(error => {
                toast.warn("Unable to see all Choir Members")
                console.error("Unable to get all members: ", error)
+               setAllUsersLoading(false);
           });
      }
 
      return (
-          <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile, allUsers, getAllMembers }}>
+          <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile, allUsers, getAllMembers, allUsersLoading }}>
                { children }
           </UserContext.Provider>
      )

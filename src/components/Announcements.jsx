@@ -13,14 +13,17 @@ const Announcements = () => {
      const { setPopup, setPopupDetails, setPopupType, popup, popupType, popupDetails } = useContext(PopopContext)
      const [annForm, setAnnForm] = useState(false)
      const [searchQuery, setSearchQuery] = useState('');
+     const [loadingAnnouncs, setLoadingAnnouncs] = useState(true)
 
      useEffect(() => {
           axios.get(`${backendApi}/api/announcements`).then(response => {
                response.data.sort((a, b) => b.createdAt - a.createdAt);
                console.log(response.data)
                setAnnouncs(response.data)
+               setLoadingAnnouncs(false);
           }).catch(error => {
                console.error(error)
+               setLoadingAnnouncs(false);
                toast.warn("Unable to reach server")
           })
      }, [])
@@ -41,7 +44,22 @@ const Announcements = () => {
           </div>
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Announcements</h2>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
-               {filteredAnnouncs.map((announcement, index) => {
+               {loadingAnnouncs ? (
+                    <>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                    <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
+                         </>
+                    ) : announcs.length <= 0 ? (
+                              <div className={`text-center`}>No Announcement Here</div>
+                         ) : filteredAnnouncs.length <= 0 ? (
+                         <div className={`bg-white p-[1rem] rounded-lg shadow-md shadow-gray-400 min-h-[4rem] break-words`}>
+                              There is no announcement with &quot;{ searchQuery }&quot; !
+                         </div>
+                    ) : filteredAnnouncs.map((announcement, index) => {
                     return (
                          <div className={`bg-white p-[1rem] flex flex-col gap-[1rem] rounded-lg shadow-md shadow-gray-400 last-of-type:mb-[1rem]`} key={index}>
                               <p className={`font-bold text-xl`}><span>{index + 1}.</span>&nbsp;&nbsp;<span>{announcement.title}</span></p>

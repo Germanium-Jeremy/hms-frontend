@@ -9,6 +9,7 @@ export const FinesContext = createContext(null)
 export const FinesProvider = ({ children }) => {
      const { loggedInUser } = useContext(UserContext)
      const [userFines, setUserFines] = useState([])
+     const [userFinesLoading, setUserFinesLoading] = useState(true)
      const [unpaidFines, setUnpaidFines] = useState([])
      const [finesUnpaidLoading, setFinesUnpaidLoading] = useState(false)
 
@@ -25,12 +26,15 @@ export const FinesProvider = ({ children }) => {
      }
 
      const getUserFines = async () => {
+          setUserFinesLoading;(true)
           axios.get(`${backendApi}/api/fines/user/${loggedInUser._id || JSON.parse(localStorage.getItem("HMS_USER")).userId || JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
                console.log("Got user fines", response.data)
+               setUserFinesLoading(false)
           }).catch(error => {
                // console.log("Error getting user fines", error)
                if (error?.response.status == 500) toast.warn("Can not get your fines")
                if (error.response.status == 404 && error.response.data.message == "No fines found for this user.") setUserFines(error.response.data.message)
+               setUserFinesLoading(false)
           })
      }
 
@@ -45,7 +49,7 @@ export const FinesProvider = ({ children }) => {
      }
 
      return (
-          <FinesContext.Provider value={{userFines, getUserFines, getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid}}>
+          <FinesContext.Provider value={{userFines, getUserFines, getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid, userFinesLoading}}>
                {children}
           </FinesContext.Provider>
      )
