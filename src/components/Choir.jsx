@@ -5,6 +5,7 @@ import { PopopContext } from './context/popup';
 import SortBtn from './SortBtn';
 import AddSong from './forms/AddSong';
 import axios from 'axios';
+import { SearchBar } from './subComponents/SearchBar';
 
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
@@ -32,6 +33,10 @@ const Choir = () => {
           return text.slice(0, 10) + "...";
      };
 
+     const handleSearchChange = (e) => {
+          setSearchQuery(e.target.value)
+     }
+
      useEffect(() => {
           getSongs();
      }, []);
@@ -43,13 +48,7 @@ const Choir = () => {
 
      return (
           <>
-          <div className={`w-full mt-[5rem] px-[1rem] py-[.5rem] flex gap-[1rem]`}>
-                    <div className={`flex rounded-2xl items-center justify-between gap-[.5rem] border-2 border-black overflow-hidden bg-white px-[.6rem] w-full`}>
-                         <input type="text" placeholder='search for a song' className={`outline-none border-none indent-[1rem] py-[.5rem] w-full`} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}  />
-                         <FaSearch />
-                    </div>
-                    <SortBtn />
-               </div>
+          <SearchBar item={"for a song"} itemFunction={handleSearchChange} itemValue={searchQuery} />
                <h2 className={`text-center text-xl font-bold my-[1rem]`}>Choir Songs</h2>
                {loadingSongs ? (<div className={`flex flex-col gap-[1rem] px-[1rem]`}>
                     <div className={`w-full min-h-[5rem] rounded bg-gray-500 animate-pulse`}></div>

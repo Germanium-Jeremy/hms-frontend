@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FaSearch, FaSortDown } from 'react-icons/fa'
 import { PopopContext } from './context/popup'
 import Popups from './Popups'
-import SortBtn from './SortBtn'
 import AddAnnounce from './forms/AddAnnounce'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { SearchBar } from './subComponents/SearchBar'
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const Announcements = () => {
@@ -18,7 +17,6 @@ const Announcements = () => {
      useEffect(() => {
           axios.get(`${backendApi}/api/announcements`).then(response => {
                response.data.sort((a, b) => b.createdAt - a.createdAt);
-               console.log(response.data)
                setAnnouncs(response.data)
                setLoadingAnnouncs(false);
           }).catch(error => {
@@ -32,16 +30,14 @@ const Announcements = () => {
           announce.title.toLowerCase().includes(searchQuery.toLowerCase()) || announce.details.toLowerCase().includes(searchQuery.toLowerCase())
      );
 
+     const handleSearchChange = (e) => {
+          setSearchQuery(e.target.value)
+     }
+
 
      return (
           <>
-          <div className={`w-full mt-[5rem] px-[1rem] py-[.5rem] flex gap-[1rem]`}>
-               <div className={`flex rounded-2xl items-center justify-between gap-[.5rem] border-2 border-black overflow-hidden bg-white px-[.6rem] w-full`}>
-                    <input type="text" placeholder='search by date' className={`outline-none border-none indent-[1rem] py-[.5rem] w-full`} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                    <FaSearch />
-               </div>
-               <SortBtn />
-          </div>
+          <SearchBar item={"announcement"} itemFunction={handleSearchChange} itemValue={searchQuery} />
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Announcements</h2>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                {loadingAnnouncs ? (

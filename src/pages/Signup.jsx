@@ -112,8 +112,10 @@ const Signup = () => {
                          <article className={`flex flex-col gap-1`}>
                               <label htmlFor="role">Select Your Role</label>
                               <select className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} id="role" onChange={(e) => setRole(e.target.value)} >
-                                        <option value="Choir Member">Choir Member</option>
-                                        <option value="Choir Leader">President</option>
+                                   <option value="Choir Member">Choir Member</option>
+                                   <option value="Choir Leader">President</option>
+                                   <option value="Choir discipline">Disciplinary</option>
+                                   <option value="Choir coach">Coach</option>
                               </select>
                               {}
                          </article>

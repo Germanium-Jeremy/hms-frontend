@@ -4,6 +4,7 @@ import Popups from './Popups'
 import { PopopContext } from './context/popup'
 import SortBtn from './SortBtn'
 import { UserContext } from './context/UserContext'
+import { SearchBar } from './subComponents/SearchBar'
 
 const Members = () => {
      const { allUsers, getAllMembers, allUsersLoading } = useContext(UserContext)
@@ -19,15 +20,13 @@ const Members = () => {
           member.username.toLowerCase().includes(searchQuery.toLowerCase()) || member.role.toLowerCase().includes(searchQuery.toLowerCase()) || member.email.toLowerCase().includes(searchQuery.toLowerCase()) || member.name.toLowerCase().includes(searchQuery.toLowerCase())
      );
 
+     const handleSearchChange = (e) => {
+          setSearchQuery(e.target.value)
+     }
+
      return (
           <>
-          <div className={`w-full mt-[5rem] px-[1rem] py-[.5rem] flex gap-[1rem]`}>
-               <div className={`flex rounded-2xl items-center justify-between gap-[.5rem] border-2 border-black overflow-hidden bg-white px-[.6rem] w-full`}>
-                    <input type="text" placeholder='search by name' className={`outline-none border-none indent-[1rem] py-[.5rem] w-full`} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                    <FaSearch />
-               </div>
-               <SortBtn />
-          </div>
+          <SearchBar item={"member"} itemFunction={handleSearchChange} itemValue={searchQuery} />
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Choir Members</h2>
           <p className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[2rem]`}>Name</p>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>

@@ -1,16 +1,15 @@
 import React, { useContext, useEffect } from 'react'
-import ReactSvg from '../assets/react.svg'
 import { UserContext } from './context/UserContext'
 import User from '../assets/User.png'
+const imagePath = import.meta.env.VITE_IMAGES_PATH;
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const UserData = () => {
-     const { loggedInUser, setUpdateUsername, setEmailU, usernameU, updateEmail, handleEditUser, updateLoading, loggedInUserProfile } = useContext(UserContext)
-     const userImage = loggedInUserProfile != "" ? `${backendApi}/${loggedInUserProfile}` : `${backendApi}/${JSON.parse(localStorage.getItem("HMS_USER")).profileImageUrl}`
-     console.log("User Image", userImage)
+     const { loggedInUser, setUpdateUsername, setEmailU, usernameU, updateEmail, handleEditUser, updateLoading } = useContext(UserContext)
+
      return (
           <div className={`mt-[6rem] rounded-xl shadow-md shadow-gray-400 px-[1rem] py-[2rem] mx-[2rem] flex flex-col items-center justify-center`}>
-               <img src={userImage || User} alt="User" className={`w-[2cm] h-[2cm] rounded-full border-4 p-1 border-gray-600`} />
+               <img src={null} alt="User" className={`w-[2cm] h-[2cm] rounded-full border-4 p-1 border-gray-600`} />
                <form className={`flex flex-col pt-[1rem] w-full`} onSubmit={handleEditUser}>
                     <div className={`px-4 border-l-4 pt-[1rem] border-[#301B84] w-full`}>
                          <article className={`flex w-full gap-3 items-center`}>

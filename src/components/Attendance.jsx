@@ -4,6 +4,7 @@ import SortBtn from './SortBtn'
 import { UserContext } from './context/UserContext'
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { SearchBar } from './subComponents/SearchBar';
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const Attendance = () => {
@@ -59,17 +60,15 @@ const Attendance = () => {
                }
                setSubmitLoading(false);
           }
-    };
+     };
+
+     const handleSearchChange = (e) => {
+          setSearchQuery(e.target.value)
+     }
 
      return (
           <>
-          <div className={`w-full mt-[5rem] px-[1rem] py-[.5rem] flex gap-[1rem]`}>
-               <div className={`flex rounded-2xl items-center justify-between gap-[.5rem] border-2 border-black overflow-hidden bg-white px-[.6rem] w-full`}>
-                    <input type="text" placeholder='search by date' className={`outline-none border-none indent-[1rem] py-[.5rem] w-full`} onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery} />
-                    <FaSearch />
-               </div>
-               <SortBtn />
-          </div>
+          <SearchBar item={"for a member"} itemFunction={handleSearchChange} itemValue={searchQuery} />
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Attendance</h2>
           <div className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[2rem] flex justify-between`}>
                <i>Name</i> 
