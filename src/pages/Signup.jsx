@@ -1,13 +1,12 @@
 import axios from 'axios';
 import React, {  useState } from 'react'
 import { FaAngleRight } from 'react-icons/fa6'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"
 
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const Signup = () => {
-     const [fillingData, setFillingData] = useState(true);
      const [name, setName] = useState("");
      const [emailSign, setEmailSign] = useState("");
      const [username, setUsername] = useState("");
@@ -81,57 +80,58 @@ const Signup = () => {
      }
 
      return (
-     <form className={`w-screen h-screen px-[1rem] text-black flex items-center justify-center relative`} onSubmit={handleRegister}>
-          <div className={`rounded-lg shadow-2xl shadow-gray-400 px-[1rem] py-[2rem] absolute ${fillingData ? "left-[1rem] right-[1rem]" : "right-[100%] left-[-100%]"}`}>
-          <h2 className={`font-bold text-xl text-center`}>Sign up</h2>
-               <div className={`flex flex-col gap-[1rem] my-[1rem]`}>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="name">Your Name</label>
-                         <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="name" placeholder="name" value={name} onChange={(e) => setName(e.target.value)} required />
-                         {}
-                    </article>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="email">Your Email</label>
-                         <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="email" id="email" placeholder="email" value={emailSign} onChange={(e) => setEmailSign(e.target.value)} required />
-                         {}
-                    </article>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="username">Your Username</label>
-                         <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="username" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-                         {}
-                    </article>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="password">Your Password</label>
-                         <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="password" id="password" placeholder="password" value={passwordSign} onChange={(e) => setPasswordSign(e.target.value)} required />
-                         {}
-                    </article>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="profile">Select Your Profile</label>
-                         <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="file" id="profile" onChange={handleFileChange} />
-                         {}
-                    </article>
-                    <article className={`flex flex-col gap-1`}>
-                         <label htmlFor="role">Select Your Role</label>
-                         <select className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} id="role" onChange={(e) => setRole(e.target.value)} >
-                                   <option value="Choir Member">Choir Member</option>
-                                   <option value="Choir Leader">President</option>
-                         </select>
-                         {}
-                    </article>
-               </div>
-               {loading ? (
-                    <button disabled className={`bg-gray-700 rounded-lg w-full text-white py-[.5rem] px-[2rem] mb-5 flex gap-[1rem] justify-center items-center`} >
-                         <span>Wait</span>
-                         <p className={`rounded-full border-b-2 border-t-2 animate-spin w-[1.5rem] h-[1.5rem]`}></p>
-                    </button>
-               ) : (
-                    <button type="submit" className={`bg-[#40a] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`}>
-                         <span>Register</span>
-                         <FaAngleRight className={`right-2 absolute top-1/3`} />
-                    </button>
-               )}
+          <div className={`w-screen h-screen px-[1rem] text-black flex items-center justify-center`}>
+               <form className={`rounded-lg shadow-2xl shadow-gray-400 px-[1rem] py-[2rem] w-full`} onSubmit={handleRegister}>
+                    <h2 className={`font-bold text-xl text-center pt-[5rem]`}>Sign up</h2>
+                    <div className={`flex flex-col gap-[1rem] py-[2rem]`}>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="name">Your Name</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="name" placeholder="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                              {}
+                         </article>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="email">Your Email</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="email" id="email" placeholder="email" value={emailSign} onChange={(e) => setEmailSign(e.target.value)} required />
+                              {}
+                         </article>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="username">Your Username</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="username" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                              {}
+                         </article>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="password">Your Password</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="password" id="password" placeholder="password" value={passwordSign} onChange={(e) => setPasswordSign(e.target.value)} required />
+                              {}
+                         </article>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="profile">Select Your Profile</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="file" id="profile" onChange={handleFileChange} />
+                              {}
+                         </article>
+                         <article className={`flex flex-col gap-1`}>
+                              <label htmlFor="role">Select Your Role</label>
+                              <select className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} id="role" onChange={(e) => setRole(e.target.value)} >
+                                        <option value="Choir Member">Choir Member</option>
+                                        <option value="Choir Leader">President</option>
+                              </select>
+                              {}
+                         </article>
+                    </div>
+                    {loading ? (
+                         <button disabled className={`bg-gray-700 rounded-lg w-full text-white py-[.5rem] px-[2rem] mb-5 flex gap-[1rem] justify-center items-center`} >
+                              <span>Wait</span>
+                              <p className={`rounded-full border-b-2 border-t-2 animate-spin w-[1.5rem] h-[1.5rem]`}></p>
+                         </button>
+                    ) : (
+                         <button type="submit" className={`bg-[#40a] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`}>
+                              <span>Register</span>
+                              <FaAngleRight className={`right-2 absolute top-1/3`} />
+                         </button>
+                    )}
+                    <p>Have an account? <Link className={`text-[#301B84] font-bold`} to={'/'}>Log In</Link> </p>
+               </form>
           </div>
-     </form>
      );
 }
 

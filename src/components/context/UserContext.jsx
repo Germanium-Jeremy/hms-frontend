@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { all } from "axios"
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"
@@ -19,6 +19,8 @@ export const UserProvider = ({ children }) => {
 
      const [usernameU, setUpdateUsername] = useState("")
      const [updateEmail, setEmailU] = useState("")
+
+     const [allUsers, setAllUsers] = useState([])
      const navigate = useNavigate()
 
      // const handleRegister = async (event) => {
@@ -74,6 +76,7 @@ export const UserProvider = ({ children }) => {
           }).catch(error => {
                setUpdateLoading(false)
                console.error(error)
+               toast.warn("Unable to update your data")
           })
      }
 
@@ -101,9 +104,17 @@ export const UserProvider = ({ children }) => {
           JSON.parse(localStorage.getItem("HMS_USER")) ? getUserInfo() : navigate('/')
      }, [])
 
+     const getAllMembers = async () => {
+          axios.get(`${backendApi}/api/users`).then(response => {
+               setAllUsers(response.data)
+          }).catch(error => {
+               toast.warn("Unable to see all Choir Members")
+               console.error("Unable to get all members: ", error)
+          });
+     }
+
      return (
-          <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, 
-               setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile }}>
+          <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile, allUsers, getAllMembers }}>
                { children }
           </UserContext.Provider>
      )

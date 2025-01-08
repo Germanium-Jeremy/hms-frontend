@@ -11,7 +11,7 @@ const Nav = ({isMenu, setIsMenu}) => {
           { text: "Choir Songs", ancor: "songs" },
           { text: "Announcements", ancor: "ann" },
           { text: "Unpaid Services", ancor: "unpaid" },
-          { text: "Events", ancor: "events" },
+          // { text: "Events", ancor: "events" },
           { text: "Choir Members", ancor: "members" },
           { text: "Add Fines", ancor: "punish" },
           { text: "Attendance", ancor: "attand" },
