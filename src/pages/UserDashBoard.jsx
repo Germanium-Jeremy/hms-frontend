@@ -8,7 +8,7 @@ const UserDashBoard = () => {
      const [isMenu, setIsMenu] = useState(false);
      return (
           <>
-          <header className={`fixed top-0 left-0 right-0 bg-[#301B84] flex justify-between py-[.7rem] px-[2rem] items-center rounded-b-xl z-[5]`}>
+          <header className={`fixed top-0 left-0 right-0 bg-[#301B84] flex justify-between py-[.7rem] px-[2rem] items-center z-[5]`}>
                <div className={`relative rounded-full border-2 border-white p-1 overflow-hidden h-[3rem] w-[3rem]`}>
                     <img src={ReactSvg} alt="HMS" loading="eager" className={`w-full h-full`} />
                </div>

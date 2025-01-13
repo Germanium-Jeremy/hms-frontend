@@ -10,26 +10,24 @@ export const UserContext = createContext(null)
 export const UserProvider = ({ children }) => {
      const [loginUsername, setLoginUsername] = useState('')
      const [loginPassword, setLoginPassword] = useState('')
-
      const [loading, setLoading] = useState(false)
-     const [updateLoading, setUpdateLoading] = useState(false)
-
-     const [loggedInUser, setLoggedInUser] = useState([])
-     const [loggedInUserProfile, setLoggedInUserProfile] = useState(null)
 
      const [usernameU, setUpdateUsername] = useState("")
      const [updateEmail, setEmailU] = useState("")
-
+     const [updateLoading, setUpdateLoading] = useState(false)
+     
      const [allUsers, setAllUsers] = useState([])
      const [allUsersLoading, setAllUsersLoading] = useState(true)
+
      const navigate = useNavigate()
 
      const handleLogin = async (event) => {
           event.preventDefault(), 
           setLoading(true)
+          setLoggedInUser([]);
           axios.post(`${backendApi}/api/auth/login`, { username: loginUsername, password: loginPassword }).then(response => {
                setLoading(false)
-               localStorage.setItem("HMS_USER", JSON.stringify(response.data))
+               localStorage.setItem("HMS_USER", JSON.stringify(response.data.user))
                toast.success("Login Successful")
                setTimeout(() => {
                     navigate('/user')
@@ -47,8 +45,9 @@ export const UserProvider = ({ children }) => {
      const handleEditUser = async (event) => {
           event.preventDefault()
           setUpdateLoading(true)
-          axios.put(`${backendApi}/api/users/user/${JSON.parse(localStorage.getItem("HMS_USER")).userId}`, { username: usernameU, email: updateEmail }).then(response => {
+          axios.put(`${backendApi}/api/users/user/${JSON.parse(localStorage.getItem("HMS_USER"))._id}`, { username: usernameU, email: updateEmail }).then(response => {
                toast.success("Update Successfully")
+               localStorage.setItem("HMS_USER", JSON.stringify(response.data));
                setUpdateLoading(false)
           }).catch(error => {
                setUpdateLoading(false)
@@ -77,9 +76,9 @@ export const UserProvider = ({ children }) => {
           window.location = '/'
      }
 
-     useEffect(() => {
-          JSON.parse(localStorage.getItem("HMS_USER")) ? getUserInfo() : navigate('/')
-     }, [])
+     // useEffect(() => {
+     //      JSON.parse(localStorage.getItem("HMS_USER")) ? getUserInfo() : navigate('/')
+     // }, [])
 
      const getAllMembers = async () => {
           axios.get(`${backendApi}/api/users`).then(response => {
@@ -93,7 +92,7 @@ export const UserProvider = ({ children }) => {
      }
 
      return (
-          <UserContext.Provider value={{ loginUsername, loginPassword, loading, loggedInUser, usernameU, updateEmail, updateLoading, setLoginUsername, setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, loggedInUserProfile, allUsers, getAllMembers, allUsersLoading }}>
+          <UserContext.Provider value={{ loginUsername, loginPassword, loading, usernameU, updateEmail, updateLoading, setLoginUsername, setLoginPassword, handleLogin, logout, setUpdateUsername, setEmailU, handleEditUser, allUsers, getAllMembers, allUsersLoading }}>
                { children }
           </UserContext.Provider>
      )

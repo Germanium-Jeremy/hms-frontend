@@ -34,10 +34,10 @@ const AddSong = ({ setSongForm }) => {
                          <label htmlFor="title" className={`font-semibold`}>Enter the song title</label>
                          <input type="text" className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`} placeholder='Umusozi muremure' />
                     </div>
-                    <div className={`flex flex-col gap-1`}>
+                    {/* <div className={`flex flex-col gap-1`}>
                          <label htmlFor="audio" className={`font-semibold`}>Select the audio</label>
                          <button type='button' className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`}>Upload the audio</button>
-                    </div>
+                    </div> */}
                     <div className={`flex flex-col gap-1`}>
                          <label htmlFor="lyrics" className={`font-semibold`}>Type the lyrics</label>
 

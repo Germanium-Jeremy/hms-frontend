@@ -1,15 +1,31 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from './context/UserContext'
 import User from '../assets/User.png'
 const imagePath = import.meta.env.VITE_IMAGES_PATH;
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const UserData = () => {
-     const { loggedInUser, setUpdateUsername, setEmailU, usernameU, updateEmail, handleEditUser, updateLoading } = useContext(UserContext)
+     const { setUpdateUsername, setEmailU, usernameU, updateEmail, handleEditUser, updateLoading } = useContext(UserContext)
+     // const savedData = JSON.parse(localStorage.getItem("HMS_USER"));
+     // const userImage = savedData === null || savedData === undefined ? User : `${imagePath}${savedData.profileImageUrl}`;
+     // console.log(userImage)
 
+     const [loggedInAccount, setLogedInAccount] = useState([])
+     const user = JSON.parse(localStorage.getItem("HMS_USER"));
+
+     useEffect(() => {
+          if (user || user != undefined) {
+               setLogedInAccount(user)
+               setEmailU(user.email)
+               setUpdateUsername(user.username)
+          } else {
+               setLogedInAccount([])
+          }
+     }, [])
+     
      return (
           <div className={`mt-[6rem] rounded-xl shadow-md shadow-gray-400 px-[1rem] py-[2rem] mx-[2rem] flex flex-col items-center justify-center`}>
-               <img src={null} alt="User" className={`w-[2cm] h-[2cm] rounded-full border-4 p-1 border-gray-600`} />
+               <img src={User} alt="User" className={`w-[2cm] h-[2cm] rounded-full border-4 p-1 border-gray-600`} />
                <form className={`flex flex-col pt-[1rem] w-full`} onSubmit={handleEditUser}>
                     <div className={`px-4 border-l-4 pt-[1rem] border-[#301B84] w-full`}>
                          <article className={`flex w-full gap-3 items-center`}>
@@ -22,12 +38,12 @@ const UserData = () => {
                          </article>
                          <article className={`flex w-full gap-3 items-center`}>
                               <span className={`font-semibold text-lg`}>from:</span>
-                              <div className={`border-none outline-none text-gray-700 py-1`}>{(new Date(loggedInUser.memberSince)).toDateString() || "waiting..."}</div>
+                              <div className={`border-none outline-none text-gray-700 py-1`}>{(new Date(loggedInAccount.memberSince)).toDateString() || "waiting..."}</div>
                          </article>
                          <article className={`flex w-full gap-3 items-center`}>
                               <span className={`font-semibold text-lg`}>role:</span>
-                              {loggedInUser == [] ? (<span className={`border-none outline-none bg-gray-300 h-[.8rem] w-full rounded animate-pulse`}></span>) : (
-                                   <div className={`border-none outline-none text-gray-700 py-1`}>{loggedInUser.role || "Waiting..."}</div>
+                              {loggedInAccount == [] ? (<span className={`border-none outline-none bg-gray-300 h-[.8rem] w-full rounded animate-pulse`}></span>) : (
+                                   <div className={`border-none outline-none text-gray-700 py-1`}>{loggedInAccount.role || "Waiting..."}</div>
                               )}                              
                          </article>
                     </div>

@@ -22,6 +22,7 @@ const Choir = () => {
                const response = await axios.get(`${backendApi}/api/songs`);
                setSongs(response.data);
                setLoadingSongs(false)
+               console.log(response.data)
           } catch (error) {
                setLoadingSongs(false);
                console.log(error);

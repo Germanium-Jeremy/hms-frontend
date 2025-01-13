@@ -15,21 +15,28 @@ import Attendance from '../components/Attendance'
 import ManageFines from '../components/ManageFines'
 import Logout from "../components/Logout";
 import { Route, Routes, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 
 const AnimatedRoutes = () => {
-     // const navigate = useNavigate();
-
+     const navigate = useNavigate();
      let user = JSON.parse(localStorage.getItem("HMS_USER"));
-     if (user != null || user != undefined) {
-          user = user._id || user.id
-     } else {
-          user = null
-     }
+     const [userRole, setUserRole] = useState('')
+
+     useEffect(() => {
+          if (user != null || user != undefined) {
+               user = user._id || user.id
+               setUserRole(JSON.parse(localStorage.getItem("HMS_USER")).role);
+               // navigate("/user");
+          } else {
+               user = null
+               // navigate("/");
+          }
+     }, [])
 
      return (
           <Routes>
-               <Route path='/' element={ <Auth /> }>
+               <Route path='/' element={ !user ? <Auth /> : <UserDashBoard /> }>
                     <Route path='' element={ <Login /> } />
                     <Route path='signup' element={ <Signup /> } />
                </Route>
@@ -41,10 +48,10 @@ const AnimatedRoutes = () => {
                     <Route path='ann' element={ <Announcements /> } />
                     <Route path='unpaid' element={ <Services /> } />
                     <Route path='members' element={ <Members /> } />
-                    {/* <Route path='events' element={ <Events /> } /> */}
-                    <Route path='punish' element={ <Punish /> } />
-                    <Route path='attand' element={ <Attendance /> } />
-                    <Route path='manage' element={ <ManageFines /> } />
+                    <Route path='events' element={ <Events /> } />
+                    <Route path='punish' element={ userRole === 'Choir Leader' ? <Punish /> : <Home /> } />
+                    <Route path='attand' element={ userRole === 'Choir Leader' ? <Attendance /> : <Home /> } />
+                    <Route path='manage' element={ userRole === 'Choir Leader' ? <ManageFines /> : <Home /> } />
                </Route>
                <Route path='/logout' element={ <Logout /> } />
           </Routes>

@@ -7,7 +7,6 @@ const backendApi = import.meta.env.VITE_BACKEND_URL
 export const FinesContext = createContext(null)
 
 export const FinesProvider = ({ children }) => {
-     const { loggedInUser } = useContext(UserContext)
      const [userFines, setUserFines] = useState([])
      const [userFinesLoading, setUserFinesLoading] = useState(true)
      const [unpaidFines, setUnpaidFines] = useState([])
@@ -18,7 +17,7 @@ export const FinesProvider = ({ children }) => {
           axios.get(`${backendApi}/api/fines/unpaidUsers`).then(response => {
                setFinesUnpaidLoading(false);
                setUnpaidFines(response.data)
-               console.log("Fines: ", response.data)
+               // console.log("Fines: ", response.data)
           }).catch(error => {
                setFinesUnpaidLoading(false);
                console.error(error)
@@ -26,9 +25,10 @@ export const FinesProvider = ({ children }) => {
      }
 
      const getUserFines = async () => {
-          setUserFinesLoading;(true)
-          axios.get(`${backendApi}/api/fines/user/${loggedInUser._id || JSON.parse(localStorage.getItem("HMS_USER")).userId || JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
-               console.log("Got user fines", response.data)
+          setUserFinesLoading; (true)
+          // let user = JSON.parse(localStorage.getItem("HMS_USER"));
+          // console.log(user)
+          axios.get(`${backendApi}/api/fines/user/${JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
                setUserFinesLoading(false)
           }).catch(error => {
                // console.log("Error getting user fines", error)
