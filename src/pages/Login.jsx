@@ -7,7 +7,7 @@ const Login = () => {
      const { loginUsername, loginPassword, handleLogin, setLoginUsername, setLoginPassword, loading } = useContext(UserContext)
      return (
           <div className={`w-screen h-screen px-[1rem] text-black flex items-center justify-center`}>
-               <form className={`rounded-lg shadow-2xl shadow-gray-400 px-[1rem] py-[2rem] w-full`}>
+               <form className={`rounded-lg shadow-2xl shadow-gray-400 px-[1rem] py-[2rem] w-full`} onSubmit={handleLogin}>
                     <h2 className={`font-bold text-xl text-center`}>Log in</h2>
                     <div className={`flex flex-col gap-[1rem] my-[3rem]`}>
                          <article className={`flex flex-col gap-1`}>
@@ -27,7 +27,7 @@ const Login = () => {
                               <p className={`rounded-full border-b-2 border-t-2 animate-spin w-[1.5rem] h-[1.5rem]`}></p>
                          </button>
                     ) : (
-                         <button className={`bg-[#301B84] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`} onClick={handleLogin}>
+                         <button className={`bg-[#301B84] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`}>
                               <span>Login</span>
                               <FaAngleRight className={`right-2 absolute top-1/3`} />
                          </button>

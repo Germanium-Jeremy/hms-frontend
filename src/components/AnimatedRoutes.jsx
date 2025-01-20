@@ -36,7 +36,7 @@ const AnimatedRoutes = () => {
 
      return (
           <Routes>
-               <Route path='/' element={ !user ? <Auth /> : <UserDashBoard /> }>
+               <Route path='/' element={ <Auth /> }>
                     <Route path='' element={ <Login /> } />
                     <Route path='signup' element={ <Signup /> } />
                </Route>

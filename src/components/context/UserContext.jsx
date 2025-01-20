@@ -24,7 +24,6 @@ export const UserProvider = ({ children }) => {
      const handleLogin = async (event) => {
           event.preventDefault(), 
           setLoading(true)
-          setLoggedInUser([]);
           axios.post(`${backendApi}/api/auth/login`, { username: loginUsername, password: loginPassword }).then(response => {
                setLoading(false)
                localStorage.setItem("HMS_USER", JSON.stringify(response.data.user))

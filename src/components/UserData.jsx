@@ -6,9 +6,6 @@ const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const UserData = () => {
      const { setUpdateUsername, setEmailU, usernameU, updateEmail, handleEditUser, updateLoading } = useContext(UserContext)
-     // const savedData = JSON.parse(localStorage.getItem("HMS_USER"));
-     // const userImage = savedData === null || savedData === undefined ? User : `${imagePath}${savedData.profileImageUrl}`;
-     // console.log(userImage)
 
      const [loggedInAccount, setLogedInAccount] = useState([])
      const user = JSON.parse(localStorage.getItem("HMS_USER"));
