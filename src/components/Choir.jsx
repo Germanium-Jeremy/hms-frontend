@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaPlay, FaSearch } from 'react-icons/fa';
 import Popups from './Popups';
 import { PopopContext } from './context/popup';
-import SortBtn from './SortBtn';
 import AddSong from './forms/AddSong';
 import axios from 'axios';
 import { SearchBar } from './subComponents/SearchBar';
@@ -22,7 +21,6 @@ const Choir = () => {
                const response = await axios.get(`${backendApi}/api/songs`);
                setSongs(response.data);
                setLoadingSongs(false)
-               console.log(response.data)
           } catch (error) {
                setLoadingSongs(false);
                console.log(error);
@@ -44,12 +42,12 @@ const Choir = () => {
 
     // Filter songs based on search query
      const filteredSongs = songs.filter(song =>
-          song.songName.toLowerCase().includes(searchQuery.toLowerCase())
+          song.songTitle.toLowerCase().includes(searchQuery.toLowerCase())
      );
 
      return (
           <>
-          <SearchBar item={"for a song"} itemFunction={handleSearchChange} itemValue={searchQuery} />
+               <SearchBar item={"for a song"} itemFunction={handleSearchChange} itemValue={searchQuery} />
                <h2 className={`text-center text-xl font-bold my-[1rem]`}>Choir Songs</h2>
                {loadingSongs ? (<div className={`flex flex-col gap-[1rem] px-[1rem]`}>
                     <div className={`w-full min-h-[5rem] rounded bg-gray-500 animate-pulse`}></div>
@@ -62,24 +60,34 @@ const Choir = () => {
                          {songs.length <= 0 ? (<div>There are no songs yet</div>) : filteredSongs.length === 0 ? (
                                    <div className={`break-words`}>There is no song named &quot;{ searchQuery }!&quot;</div>
                          ) : (filteredSongs.map((song, index) => (
-                              <div className={`bg-white px-[1rem] py-[1rem] flex shadow shadow-gray-400 rounded-lg items-center justify-between`} key={index}>
+                              <div className={`bg-white px-[1rem] py-[1rem] gap-3 flex flex-col shadow shadow-gray-400 rounded-lg`} key={index}>
+                                   <div className={`flex justify-between items-center`}>
                                    <div className={`flex flex-col gap-2`}>
-                                        <p className={`font-bold text-lg`}>{hideLongText(song.songName)}</p>
+                                        <p className={`font-bold text-lg`}>{hideLongText(song.songTitle)}</p>
                                    </div>
+                                        {
+     console.log("Song Url: ", song.songUrlAudio)
+
+                                        }
                                    <div className={`flex gap-[1rem] items-center`}>
                                         <button className={`px-[1rem] py-[.5rem] bg-[#301B84] rounded-lg text-white`} onClick={() => {
                                              setPopup(true);
                                              setPopupType(2);
                                              setPopupDetails({
                                                   song: {
-                                                  title: song.songName,
-                                                  lyrics: song.lyrics,
-                                                  audio: song.audio,
-                                                  }
+                                                       title: song.songTitle,
+                                                       lyrics: song.songLyrics,
+                                                       audio: song.songUrlAudio,
+                                                  },
                                              });
                                         }}>Lyrics</button>
-                                        <FaPlay className={`rounded-full text-white text-3xl bg-gray-600 p-1`} />
+                                        {/* { song.songUrlAudio != null && <FaPlay className={`rounded-full text-white text-3xl bg-gray-600 p-1`} /> } */}
+                                        </div>
                                    </div>
+                                   {song.songUrlAudio != null && <audio className={`rounded-full text-white text-3xl bg-gray-600 p-1`} controls>
+                                        <source src="https://artlist.io/royalty-free-music/album/roar/6322" type='audio/mp3' />
+                                   </audio> }
+
                               </div>
                               ))
                          )}
