@@ -1,5 +1,5 @@
-export default function makeDateReadable(date) {
-     const date = new Date(dateString);
+const makeDateReadable = (date) => {
+     const date2 = new Date(date);
 
      const options = {
           weekday: "long",
@@ -11,6 +11,15 @@ export default function makeDateReadable(date) {
           second: "numeric",
      };
 
-     const humanReadableDate = date.toLocaleString("en-US", options);
+     const humanReadableDate = date2.toLocaleString("en-US", options);
      return humanReadableDate
 }
+
+const truncateText = (fullNames, limit) => {
+     if (fullNames.length > limit) {
+          return fullNames.substring(0, limit) + '...'
+     }
+     return fullNames
+}
+
+export { makeDateReadable, truncateText }

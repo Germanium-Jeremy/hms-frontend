@@ -11,6 +11,9 @@ export const FinesProvider = ({ children }) => {
      const [userFinesLoading, setUserFinesLoading] = useState(true)
      const [unpaidFines, setUnpaidFines] = useState([])
      const [finesUnpaidLoading, setFinesUnpaidLoading] = useState(false)
+     const [markLoading, setMarkLoading] = useState(false)
+
+     let integer = 1;
 
      const getUnpaidFines = async () => {
           setFinesUnpaidLoading(true);
@@ -39,17 +42,20 @@ export const FinesProvider = ({ children }) => {
      }
 
      const markFinePaid = async (id) => {
+          setMarkLoading(true)
           axios.put(`${backendApi}/api/fines/${id}/mark-as-paid`).then(response => {
-               console.log(response.data)
+               setMarkLoading(false)
+               integer++
                toast.success("Fine is now paid")
           }).catch(error => {
+               setMarkLoading(false)
                toast.warn("Unable to mark fine as paid")
                console.error("Fines not paid: ", error)
           });
      }
 
      return (
-          <FinesContext.Provider value={{userFines, getUserFines, getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid, userFinesLoading}}>
+          <FinesContext.Provider value={{userFines, getUserFines, getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid, userFinesLoading, markLoading, integer}}>
                {children}
           </FinesContext.Provider>
      )

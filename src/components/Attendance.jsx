@@ -5,6 +5,7 @@ import { UserContext } from './context/UserContext'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { SearchBar } from './subComponents/SearchBar';
+import { Link } from 'react-router-dom';
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const Attendance = () => {
@@ -52,13 +53,15 @@ const Attendance = () => {
                toast.success("Attendance submitted successfully")
                setSubmitLoading(false);
           } catch (error) {
-               console.error('Error submitting attendance:', error);
+               setSubmitLoading(false);
+               console.error('Error submitting attendance:', error.response);
                if (error.response.data.error.toLowerCase().includes("duplicate key")) {
                     toast.warn("Already submitted this attendance");
+               } else if (error.response.data.message.toLowerCase().includes("invalid date format")) {
+                    toast.warn("Check your date and resubmit");
                } else {
                     toast.warn("Unable to submit attendance");
                }
-               setSubmitLoading(false);
           }
      };
 
@@ -70,6 +73,12 @@ const Attendance = () => {
           <>
           <SearchBar item={"for a member"} itemFunction={handleSearchChange} itemValue={searchQuery} />
           <h2 className={`text-center text-xl font-bold my-[1rem]`}>Attendance</h2>
+          
+          <div className={`flex flex-row justify-between items-center px-[1rem]`}>
+               <Link to={'../attend'}>View Today Attendace</Link>
+               <Link to={'/'}>View Overall Attendace</Link>
+          </div>
+               
           <div className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[2rem] flex justify-between`}>
                <i>Name</i> 
                <span className={`flex gap-[.5rem] items-center`}>

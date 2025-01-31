@@ -6,12 +6,12 @@ import { FinesContext } from './context/FinesContext'
 import { SearchBar } from './subComponents/SearchBar'
 
 const Services = () => {
-     const { getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid } = useContext(FinesContext);
+     const { getUnpaidFines, finesUnpaidLoading, unpaidFines, markFinePaid, markLoading, integer } = useContext(FinesContext);
      const [searchQuery, setSearchQuery] = useState('');
-
+     
      useEffect(() => {
           getUnpaidFines()
-     }, [])
+     }, [integer, ])
 
      const filteredFInes = unpaidFines.filter(fine =>
           fine.userId.name.toLowerCase().includes(searchQuery.toLowerCase()) || fine.reason.toLowerCase().includes(searchQuery.toLowerCase()) || fine.amount.toString().toLowerCase().includes(searchQuery.toLowerCase())
@@ -49,7 +49,9 @@ const Services = () => {
                               </div>
                               <p className={`text-gray-800 text-md`}>{fine.reason}</p>
                               <div className={`flex justify-between px-[1rem] items-center`}>
-                                   <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={() => markFinePaid(fine._id)}>Mark as Paid</button>
+                                   {markLoading ? <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-gray-400`}>Pending...</button> : 
+                                        <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={() => markFinePaid(fine._id)}>Mark as paid</button>
+                                   }
                                    <span className={`px-[1rem] py-[.4rem] text-white bg-[#301B84] rounded-lg`}>{fine.amount}</span>
                               </div>
                          </div>

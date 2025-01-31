@@ -5,6 +5,7 @@ import AddAnnounce from './forms/AddAnnounce'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { SearchBar } from './subComponents/SearchBar'
+import { truncateText } from "../data/neededFunctions";
 const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const Announcements = () => {
@@ -62,7 +63,7 @@ const Announcements = () => {
                               <div className={`flex justify-between items-center text-gray-600 text-sm w-full`}>
                                    <p className={`text-md`}>{announcement.time}</p>
                                    <p className={`text-md`}>{announcement.date}</p>
-                                   <p className={`text-gray-500 font-semibold`}>{announcement.location}</p>
+                                   <p className={`text-gray-500 font-semibold`}>{truncateText(announcement.location, 10)}</p>
                               </div>
                               <button className={`px-[2rem] py-[.5rem] bg-[#301B84] text-white rounded-lg mx-[5rem]`} onClick={() => {
                                    setPopup(true)

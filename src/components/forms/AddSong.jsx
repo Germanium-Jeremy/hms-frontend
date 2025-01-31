@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
+import { toast } from 'react-toastify';
+const backendApi = import.meta.env.VITE_BACKEND_URL;
 
 const AddSong = ({ setSongForm }) => {
      const [refs, setRefs] = useState(['']);
      const [colus, setColus] = useState(['']);
+     const [songTitle, setSongTitle] = useState('')
+     const [audioUrl, setAudioUrl] = useState('')
+     const [audioFile, setAudioFile] = useState(null)
+     const fileInputRef = useRef(null)
+     const [loadingSubmit, setLoadingSubmit] = useState(false)
 
      const addRefField = () => {
           setRefs([...refs, '']);
@@ -18,26 +26,70 @@ const AddSong = ({ setSongForm }) => {
           setRefs(newRefs);
      };
 
+     const handleFileChange = (event) => {
+          const file = event.target.files[0]
+          if (file) setAudioFile(file)
+     }
+     
+     const handleButtonCLick = () => {
+          fileInputRef.current.onClick()
+     }
+
      const handleColusChange = (index, value) => {
           const newColus = [...colus];
           newColus[index] = value;
           setColus(newColus);
      };
 
+     const generateRandomSixDigitNumber = () => {
+          return Math.floor(100000 + Math.random() * 900000);
+     };
+
+     const handleAddSong = async (event) => {
+          event.preventDefault()
+          setLoadingSubmit(true);
+
+          if (!audioFile) {
+               toast.warn("Please select an audio file to upload")
+               return
+          }
+
+         const songData = {
+               songId: generateRandomSixDigitNumber(),
+               songTitle,
+               songUrlAudio: audioFile,
+               songLyrics: {
+                    chorus: colus,
+                    ref: refs
+               }
+          };
+
+          axios.post(`${backendApi}/api/songs`, songData).then(response => {
+               setLoadingSubmit(false);
+               toast.success("Song added Successfully")
+               console.log("Song added successfully", response.data)
+          }).catch(error => {
+               setLoadingSubmit(false);
+               toast.warn("Unable to add song")
+               console.error("Unable to add song: ", error.response.data)
+          })
+     }
+
      return (
           <>
           <div className={`fixed top-0 bottom-0 left-0 right-0 z-[1] bg-gray-600 opacity-50`} onClick={() => setSongForm(false)}></div>
-          <form className={`rounded-lg bg-white px-[1rem] py-[2rem] fixed top-[6rem] bottom-[6rem] left-[1rem] right-[1rem] z-[2] overflow-hidden overflow-y-auto`}>
+          <form className={`rounded-lg bg-white px-[1rem] py-[2rem] fixed top-[6rem] bottom-[6rem] left-[1rem] right-[1rem] z-[2] overflow-hidden overflow-y-auto`} onSubmit={handleAddSong}>
                <h2 className={`text-xl font-semibold text-center`}>Add Song</h2>
                <div className={`flex flex-col gap-2 my-[2rem]`}>
                     <div className={`flex flex-col gap-1`}>
                          <label htmlFor="title" className={`font-semibold`}>Enter the song title</label>
-                         <input type="text" className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`} placeholder='Umusozi muremure' />
+                         <input type="text" className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`} placeholder='Umusozi muremure' onChange={(e) => setSongTitle(e.target.value)} value={songTitle} />
                     </div>
-                    {/* <div className={`flex flex-col gap-1`}>
-                         <label htmlFor="audio" className={`font-semibold`}>Select the audio</label>
-                         <button type='button' className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`}>Upload the audio</button>
-                    </div> */}
+                    <div className={`flex flex-col gap-1`}>
+                         <label htmlFor="audio" className={`font-semibold`}>Enter audio url</label>
+                         <input type="file" ref={fileInputRef} accept='audio/*' className={`rounded-lg outline-none border border-[#301B84] py-1 px-[1rem]`} placeholder='https://randomsite.com/song.mp3' onChange={handleFileChange} />
+                              <button type='button' className={`px-[1rem]`} onClick={handleButtonCLick}>{ audioFile ? audioFile.name : "Upload Audio" }</button>
+                    </div>
                     <div className={`flex flex-col gap-1`}>
                          <label htmlFor="lyrics" className={`font-semibold`}>Type the lyrics</label>
 
@@ -68,7 +120,9 @@ const AddSong = ({ setSongForm }) => {
                          <button type='button' onClick={addColusField} className={`text-[#301B84]`}>+ Add Colus</button>
                     </div>
                </div>
+               {loadingSubmit ? <button type='submit' className={`px-[2rem] py-[.7rem] w-full rounded-lg bg-gray-500 text-white`}>Adding Song...</button> :
                <button type='submit' className={`px-[2rem] py-[.7rem] w-full rounded-lg bg-[#301B84] text-white`}>Add Song</button>
+               }
           </form>
           </>
      );

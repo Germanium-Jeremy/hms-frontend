@@ -1,5 +1,5 @@
 const Popups = ({ setPopup, popupType, popupDetails }) => {
-     // console.log("Lyrics songs", popupDetails.song.lyrics.chorus[0].content);
+     // console.log("Lyrics songs", popupDetails.song.lyrics);
      return (
           <>
           <div className={`fixed top-0 bottom-0 left-0 right-0 z-[1] bg-gray-600 opacity-50`} onClick={() => setPopup(false)}></div>
@@ -16,8 +16,8 @@ const Popups = ({ setPopup, popupType, popupDetails }) => {
                ) : popupType == 2 ? (
                     <div className={`fixed right-[1rem] left-[1rem] top-[5rem] bottom-[5rem] overflow-hidden bg-white rounded-lg z-[2] p-[2rem] overflow-y-auto`}>
                          <h2 className={`text-lg text-center font-semibold`}>{popupDetails.song.title}</h2>
-                         {popupDetails.song.lyrics.chorus.map((chorus1, index) => (<p> {chorus1.content} </p>)) }
-                         {popupDetails.song.lyrics.ref.map((chorus1, index) => (<p> {chorus1.content} </p>)) }
+                         {popupDetails.song.lyrics.chorus.map((chorus1, index) => (<p className={`py-[.25rem]`} key={index}> {chorus1} </p>)) }
+                         {popupDetails.song.lyrics.ref.map((ref, index) => (<p className={`py-[.25rem]`} key={index}> {ref} </p>)) }
                </div>
           ) : popupType == 3 ? (
                <div className={`fixed right-[1rem] left-[1rem] top-1/3 bg-white rounded-lg z-[2] p-[2rem]`}>

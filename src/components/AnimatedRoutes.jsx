@@ -16,6 +16,7 @@ import ManageFines from '../components/ManageFines'
 import Logout from "../components/Logout";
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Today from './Today'
 
 
 const AnimatedRoutes = () => {
@@ -52,6 +53,7 @@ const AnimatedRoutes = () => {
                     <Route path='punish' element={ userRole === 'Choir Leader' ? <Punish /> : <Home /> } />
                     <Route path='attand' element={ userRole === 'Choir Leader' ? <Attendance /> : <Home /> } />
                     <Route path='manage' element={ userRole === 'Choir Leader' ? <ManageFines /> : <Home /> } />
+                    <Route path='attend' element={ userRole === 'Choir Leader' ? <Today /> : <Home /> } />
                </Route>
                <Route path='/logout' element={ <Logout /> } />
           </Routes>

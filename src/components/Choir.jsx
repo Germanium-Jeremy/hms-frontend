@@ -40,7 +40,6 @@ const Choir = () => {
           getSongs();
      }, []);
 
-    // Filter songs based on search query
      const filteredSongs = songs.filter(song =>
           song.songTitle.toLowerCase().includes(searchQuery.toLowerCase())
      );
@@ -58,17 +57,13 @@ const Choir = () => {
                </div>):  (
                     <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[1rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                          {songs.length <= 0 ? (<div>There are no songs yet</div>) : filteredSongs.length === 0 ? (
-                                   <div className={`break-words`}>There is no song named &quot;{ searchQuery }!&quot;</div>
+                              <div className={`break-words`}>There is no song named &quot;{ searchQuery }!&quot;</div>
                          ) : (filteredSongs.map((song, index) => (
                               <div className={`bg-white px-[1rem] py-[1rem] gap-3 flex flex-col shadow shadow-gray-400 rounded-lg`} key={index}>
                                    <div className={`flex justify-between items-center`}>
                                    <div className={`flex flex-col gap-2`}>
                                         <p className={`font-bold text-lg`}>{hideLongText(song.songTitle)}</p>
                                    </div>
-                                        {
-     console.log("Song Url: ", song.songUrlAudio)
-
-                                        }
                                    <div className={`flex gap-[1rem] items-center`}>
                                         <button className={`px-[1rem] py-[.5rem] bg-[#301B84] rounded-lg text-white`} onClick={() => {
                                              setPopup(true);
@@ -84,8 +79,8 @@ const Choir = () => {
                                         {/* { song.songUrlAudio != null && <FaPlay className={`rounded-full text-white text-3xl bg-gray-600 p-1`} /> } */}
                                         </div>
                                    </div>
-                                   {song.songUrlAudio != null && <audio className={`rounded-full text-white text-3xl bg-gray-600 p-1`} controls>
-                                        <source src="https://artlist.io/royalty-free-music/album/roar/6322" type='audio/mp3' />
+                                   {song.songUrlAudio != null && <audio className={`rounded-full text-white text-3xl bg-gray-600 p-1 w-full`} controls>
+                                        <source src={`${backendApi}/` + song.songUrlAudio} type='audio/mp3' />
                                    </audio> }
 
                               </div>
