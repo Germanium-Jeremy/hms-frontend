@@ -7,6 +7,7 @@ const UserFinesLittle = () => {
      useEffect(() => {
           getUserFines()
      }, [])
+     
      return (
           <>
           <div className={`rounded-lg shadow-md shadow-gray-400 px-[1rem] py-[.6rem] mt-[2rem] mx-[2rem]`}>

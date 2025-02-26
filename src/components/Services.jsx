@@ -14,7 +14,7 @@ const Services = () => {
      }, [integer, ])
 
      const filteredFInes = unpaidFines.filter(fine =>
-          fine.userId.name.toLowerCase().includes(searchQuery.toLowerCase()) || fine.reason.toLowerCase().includes(searchQuery.toLowerCase()) || fine.amount.toString().toLowerCase().includes(searchQuery.toLowerCase())
+          fine.reason.toLowerCase().includes(searchQuery.toLowerCase()) || fine.amount.toString().toLowerCase().includes(searchQuery.toLowerCase())
      );
 
      const handleSearchChange = (e) => {
@@ -40,9 +40,10 @@ const Services = () => {
                ) : filteredFInes.length <= 0 ? (
                     <div className={`text-wrap break-words`}>There is no unpaid fine with &quot; { searchQuery } &quot;</div>
                ) : filteredFInes.map((fine, index) => {
+                    console.log(fine._id)
                     return (
                          <div className={`bg-white p-[1rem] flex flex-col gap-[.5rem] rounded-lg shadow-md shadow-gray-400 last-of-type:mb-[1rem] border-l-4 border-[#301B84]`} key={index}>
-                              <p className={`font-semibold text-xl`}><span>{index + 1}</span>.&nbsp;&nbsp;<span>{fine.userId.name}</span></p>
+                              <p className={`font-semibold text-xl`}><span>{index + 1}</span>.&nbsp;&nbsp;<span>{fine.userId?.name || "No username"}</span></p>
                               <div className={`flex justify-between px-[1rem]`}>
                                    <p className={`text-gray-600 text-sm`}>{fine.date}</p>
                                    <p className={`text-sm ${fine.fineStatus ? "text-green-600" : "text-red-600"} font-semibold`}>{fine.fineStatus ? "Paid" : "Unpaid"}</p>
@@ -50,7 +51,7 @@ const Services = () => {
                               <p className={`text-gray-800 text-md`}>{fine.reason}</p>
                               <div className={`flex justify-between px-[1rem] items-center`}>
                                    {markLoading ? <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-gray-400`}>Pending...</button> : 
-                                        <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={() => markFinePaid(fine._id)}>Mark as paid</button>
+                                        <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={async() => await markFinePaid(fine._id)}>Mark as paid</button>
                                    }
                                    <span className={`px-[1rem] py-[.4rem] text-white bg-[#301B84] rounded-lg`}>{fine.amount}</span>
                               </div>

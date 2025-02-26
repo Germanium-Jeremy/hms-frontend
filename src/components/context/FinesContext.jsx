@@ -12,8 +12,7 @@ export const FinesProvider = ({ children }) => {
      const [unpaidFines, setUnpaidFines] = useState([])
      const [finesUnpaidLoading, setFinesUnpaidLoading] = useState(false)
      const [markLoading, setMarkLoading] = useState(false)
-
-     let integer = 1;
+     const [integer, setInteger] = useState(1)
 
      const getUnpaidFines = async () => {
           setFinesUnpaidLoading(true);
@@ -29,12 +28,16 @@ export const FinesProvider = ({ children }) => {
 
      const getUserFines = async () => {
           setUserFinesLoading; (true)
-          // let user = JSON.parse(localStorage.getItem("HMS_USER"));
-          // console.log(user)
           axios.get(`${backendApi}/api/fines/user/${JSON.parse(localStorage.getItem("HMS_USER"))._id}`).then(response => {
+               const unpaidFinesForUser = response.data.filter(fine => !fine.paid)
+               if (unpaidFinesForUser.length > 0) {
+                    const summary = unpaidFinesForUser.map(fine => `${fine.amount} FRW for ${fine.reason}`).join(', ')
+                    setUserFines(summary)
+               } else {
+                    setUserFines('You have paid all fines')
+               }
                setUserFinesLoading(false)
           }).catch(error => {
-               // console.log("Error getting user fines", error)
                if (error?.response.status == 500) toast.warn("Can not get your fines")
                if (error.response.status == 404 && error.response.data.message == "No fines found for this user.") setUserFines(error.response.data.message)
                setUserFinesLoading(false)
@@ -45,7 +48,7 @@ export const FinesProvider = ({ children }) => {
           setMarkLoading(true)
           axios.put(`${backendApi}/api/fines/${id}/mark-as-paid`).then(response => {
                setMarkLoading(false)
-               integer++
+               setInteger(integer + 1)
                toast.success("Fine is now paid")
           }).catch(error => {
                setMarkLoading(false)

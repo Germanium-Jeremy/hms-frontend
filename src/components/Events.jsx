@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaSearch, FaSortDown } from 'react-icons/fa'
 import { PopopContext } from './context/popup'
 import Popups from './Popups'
@@ -16,6 +16,18 @@ const Events = () => {
      ]
      const { setPopup, setPopupDetails, setPopupType, popup, popupType, popupDetails } = useContext(PopopContext)
      const [eventForm, setEventForm] = useState(false)
+     let user = JSON.parse(localStorage.getItem("HMS_USER"));
+     const [userRole, setUserRole] = useState('')
+
+     useEffect(() => {
+          if (user != null || user != undefined) {
+               user = user._id || user.id
+               setUserRole(JSON.parse(localStorage.getItem("HMS_USER")).role);
+          } else {
+               user = null
+          }
+     }, [])
+     
      return (
           <>
           <div className={`w-full mt-[5rem] px-[1rem] py-[.5rem] flex gap-[1rem]`}>
@@ -46,9 +58,9 @@ const Events = () => {
                          </div>
                     )
                })}
-               <div className={`flex justify-between mt-[1rem]`}>
+               <div className={`flex ${userRole !== 'Choir Member' ? 'justify-between' : 'justify-center'} mt-[1rem]`}>
                     <button className={`px-[1rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`}>View Past Events</button>
-                    <button className={`px-[1rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setEventForm(true)}>Add Event</button>
+                    {userRole !== 'Choir Member' && <button className={`px-[1rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setEventForm(true)}>Add Event</button> }
                </div>
           </div>
           {popup && <Popups setPopup={setPopup} popupType={popupType} popupDetails={popupDetails} />}

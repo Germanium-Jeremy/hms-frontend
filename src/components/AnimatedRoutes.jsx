@@ -50,10 +50,10 @@ const AnimatedRoutes = () => {
                     <Route path='unpaid' element={ <Services /> } />
                     <Route path='members' element={ <Members /> } />
                     <Route path='events' element={ <Events /> } />
-                    <Route path='punish' element={ userRole === 'Choir Leader' ? <Punish /> : <Home /> } />
-                    <Route path='attand' element={ userRole === 'Choir Leader' ? <Attendance /> : <Home /> } />
-                    <Route path='manage' element={ userRole === 'Choir Leader' ? <ManageFines /> : <Home /> } />
-                    <Route path='attend' element={ userRole === 'Choir Leader' ? <Today /> : <Home /> } />
+                    <Route path='punish' element={<Punish /> } />
+                    <Route path='attand' element={<Attendance /> } />
+                    <Route path='manage' element={<ManageFines /> } />
+                    <Route path='attend' element={<Today /> } />
                </Route>
                <Route path='/logout' element={ <Logout /> } />
           </Routes>

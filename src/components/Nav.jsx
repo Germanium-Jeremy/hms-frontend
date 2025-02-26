@@ -16,19 +16,46 @@ const Nav = ({isMenu, setIsMenu}) => {
                user = null
           }
      }, [])
-
+     
      const { logout } = useContext(UserContext)
-     const menuLinks = [
-          { text: "Home", ancor: "" },
-          { text: "Choir Songs", ancor: "songs" },
-          { text: "Announcements", ancor: "ann" },
-          { text: "Unpaid Services", ancor: "unpaid" },
-          { text: "Events", ancor: "events" },
-          { text: "Choir Members", ancor: "members" },
-          { text: "Add Fines", ancor: "punish" },
-          { text: "Attendance", ancor: "attand" },
-          { text: "Manage Fines", ancor: "manage" },
-     ]
+
+     const allMenuLinks = {
+          "Choir Leader": [
+               { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
+               { text: "Announcements", ancor: "ann" },
+               { text: "Unpaid Services", ancor: "unpaid" },
+               { text: "Events", ancor: "events" },
+               { text: "Choir Members", ancor: "members" },
+               { text: "Add Fines", ancor: "punish" },
+               { text: "Attendance", ancor: "attand" },
+               { text: "Manage Fines", ancor: "manage" },
+          ],
+          "Choir discipline": [
+               { text: "Home", ancor: "" },
+               { text: "Unpaid Services", ancor: "unpaid" },
+               { text: "Manage Fines", ancor: "manage" },
+          ],
+          accountant: [
+               { text: "Home", ancor: "" },
+               { text: "Add Fines", ancor: "punish" },
+               { text: "Manage Fines", ancor: "manage" },
+          ],
+          secretary: [
+               { text: "Home", ancor: "" },
+               { text: "Announcements", ancor: "ann" },
+               { text: "Events", ancor: "events" },
+          ],
+          "Choir Member": [
+               { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
+               { text: "Announcements", ancor: "ann" },
+               { text: "Events", ancor: "events" },
+               { text: "Choir Members", ancor: "members" },
+          ],
+     };
+     const menuLinks = userRole ? allMenuLinks[userRole] : [];
+
      return (
           <>
           <div className={`fixed top-0 bottom-0 right-0 z-[6] flex transition ${isMenu ? 'left-0 right-0' : 'left-[-100%] right-[100%]'}`}>
@@ -37,7 +64,6 @@ const Nav = ({isMenu, setIsMenu}) => {
                          return (
                               <Link to={link.ancor} key={index}
                                    className={`text-lg indent-[3rem] font-semibold 
-                                        ${userRole === 'Choir Member' && link.ancor.includes("punish") || userRole === 'Choir Member' && link.ancor.includes("attand") || userRole === 'Choir Member' && link.ancor.includes("manage") ? "hidden" : ""} 
                                         ${activeLink == link.ancor ? "border-b-4 border-[#301B84]" : ''}`} onClick={() => {
                                    setActiveLink(link.ancor)
                                    setIsMenu(false)
