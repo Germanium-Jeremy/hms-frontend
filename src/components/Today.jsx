@@ -13,7 +13,7 @@ const Today = () => {
 
      const getAttendanceByDate = async () => {
           if (dateAt == null) {
-               toast.warn("Select a date Please");
+               toast.warn("Hitamo itariki");
                return;
           }
 
@@ -28,9 +28,9 @@ const Today = () => {
           } catch (error) {
                setLoading(false);
                if (error.response.data.message.toLowerCase().includes("no attendance records found")) {
-                    toast.warn("No attendance records found");
+                    toast.warn("Nta attandance yabonetse");
                } else {
-                    toast.warn("Unable to get attendance");
+                    toast.warn("Habayemo akabazo!");
                }
                console.error("Unable to get attendance: ", error);
           }
@@ -54,12 +54,12 @@ const Today = () => {
           <>
                <div className={`px-[1rem] py-[2rem] flex flex-row justify-between pt-[5rem]`}>
                     <input type="date" className={`px-[.3rem] border border-[#301B84] rounded-md`} value={dateAt} onChange={(e) => setDateAt(e.target.value)} />
-                    <button className={`px-[1rem] py-[.3rem] text-white bg-[#301B84] rounded-md`} onClick={getAttendanceByDate}>View</button>
+                    <button className={`px-[1rem] py-[.3rem] text-white bg-[#301B84] rounded-md`} onClick={getAttendanceByDate}>Reba</button>
                </div>
                <div className={`px-[2rem] py-[1rem] flex flex-col items-center`}>
                     {dateAt === null ? (
                          <div className={`text-center text-lg font-semibold`}>
-                              Please select a date to view the attendance on that date.
+                              Hitamo itariki kugirango urebe attandance yaho.
                          </div>
                     ) : (
                          attendances.length > 0 ? (
@@ -68,20 +68,20 @@ const Today = () => {
                                         <li key={index} className={`py-[.5rem]`}>
                                              {userData[individual] ? (
                                                   <div>
-                                                       <strong>User ID:</strong> {individual} <br />
-                                                       <strong>Name:</strong> {userData[individual].name} <br />
-                                                       <strong>Email:</strong> {userData[individual].email} <br />
+                                                       <strong>UID:</strong> {individual} <br />
+                                                       <strong>Izina:</strong> {userData[individual].name} <br />
+                                                       <strong>Imeli:</strong> {userData[individual].email} <br />
                                                        {/* Add more fields as needed */}
                                                   </div>
                                              ) : (
-                                                  <div>Loading user data for ID: {individual}...</div>
+                                                  <div>Turacyari gushaka ufite UID: {individual}...</div>
                                              )}
                                         </li>
                                    ))}
                               </ul>
                          ) : (
                               <div className={`text-center text-lg font-semibold`}>
-                                   No attendance records available for this date.
+                                   Nta attandance yo ku tariki mwahisemo!
                               </div>
                          )
                     )}

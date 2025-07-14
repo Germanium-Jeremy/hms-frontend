@@ -6,11 +6,12 @@ const Popups = ({ setPopup, popupType, popupDetails }) => {
                {popupType == 1 ? (
                     <div className={`fixed right-[1rem] left-[1rem] top-1/3 bg-white rounded-lg z-[2] p-[2rem]`}>
                          <div className={`flex flex-col gap-[.5rem]`}>
-                              <p className={`text-lg`}> <span className={`font-semibold`}>Email:</span> <span className={`text-gray-600`}>{popupDetails.member.email}</span></p>
-                              <p className={`text-lg`}> <span className={`font-semibold`}>Role:</span> <span className={`text-gray-600`}>{popupDetails.member.role}</span></p>
+                              <p className={`text-lg`}> <span className={`font-semibold`}>Imeli:</span> <span className={`text-gray-600`}>{popupDetails.member.email}</span></p>
+                              <p className={`text-lg`}> <span className={`font-semibold`}>Inshingano:</span> <span className={`text-gray-600`}>{popupDetails.member.role}</span></p>
                          </div>
                          <div className={`flex justify-center pt-[1rem] items-center`}>
-                              <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Done</button>
+                              <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Wasoje</button>
+                              {/* <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Done</button> */}
                          </div>
                     </div>
                ) : popupType == 2 ? (

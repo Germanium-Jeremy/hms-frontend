@@ -49,10 +49,10 @@ export const FinesProvider = ({ children }) => {
           axios.put(`${backendApi}/api/fines/${id}/mark-as-paid`).then(response => {
                setMarkLoading(false)
                setInteger(integer + 1)
-               toast.success("Fine is now paid")
+               toast.success("Ubu yishyuye")
           }).catch(error => {
                setMarkLoading(false)
-               toast.warn("Unable to mark fine as paid")
+               toast.warn("Hari akabazo")
                console.error("Fines not paid: ", error)
           });
      }

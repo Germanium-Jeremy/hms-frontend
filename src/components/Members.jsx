@@ -35,9 +35,10 @@ const Members = () => {
 
      return (
           <>
-               <SearchBar item={"member"} itemFunction={handleSearchChange} itemValue={searchQuery} />
-               <h2 className={`text-center text-xl font-bold my-[1rem]`}>Choir Members</h2>
-               <p className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[2rem]`}>Name</p>
+               <SearchBar item={"Abantu"} itemFunction={handleSearchChange} itemValue={searchQuery} />
+               <h2 className={`text-center text-xl font-bold my-[1rem]`}>Abamambre ba chorali</h2>
+               {/* <h2 className={`text-center text-xl font-bold my-[1rem]`}>Choir Members</h2> */}
+               <p className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[2rem]`}>Izina</p>
                <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                     {allUsersLoading ? (
                          <>
@@ -48,9 +49,9 @@ const Members = () => {
                          <div className={`min-h-[4rem] bg-gray-400 animate-pulse rounded shadow shadow-gray-500`}></div>
                          </>
                     ) : allUsers.length <= 0 ? (
-                         <div className={`min-h-[4rem] bg-gray-400 rounded shadow shadow-gray-500 flex items-center justify-center`}>There are no users</div>
+                         <div className={`min-h-[4rem] bg-gray-400 rounded shadow shadow-gray-500 flex items-center justify-center`}>Nta muntu urimo</div>
                     ) : filteredMembers.length <= 0 ? (
-                         <div className={`min-h-[4rem] bg-gray-400 rounded shadow shadow-gray-500 break-words px-[1rem] py-[2rem]`}>There is no user with &quot; { searchQuery } &quot;</div>
+                         <div className={`min-h-[4rem] bg-gray-400 rounded shadow shadow-gray-500 break-words px-[1rem] py-[2rem]`}>Nta muntu ufite &quot; { searchQuery } &quot;</div>
                     ) : filteredMembers.map((member, index) => {
                          return (
                               <div className={`bg-white px-[1rem] py-[.7rem] rounded-lg shadow-md shadow-gray-400 border-b-4 border-[#301B84] flex justify-between items-center`} key={index}>
@@ -65,15 +66,15 @@ const Members = () => {
                                                   }
                                              });
                                              setPopupType(1);
-                                             }}>Details
+                                             }}>Amakuru
                                         </button>
                                    }
                               </div>
                          )
                     })}
-                         {userRole !== 'Choir Member' &&
+                         {(userRole !== 'Choir Member' || userRole !== 'secretary' || userRole !== 'accountant') &&
                               <button className={`px-[2rem] py-[.7rem] rounded-lg bg-[#301B84] text-white mx-[3rem]`}>
-                                   Add Choir Member
+                                   Ongeramo umumambre
                               </button>
                          }
                </div>

@@ -25,7 +25,6 @@ const Nav = ({isMenu, setIsMenu}) => {
                { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },
                { text: "Unpaid Services", ancor: "unpaid" },
-               { text: "Events", ancor: "events" },
                { text: "Choir Members", ancor: "members" },
                { text: "Add Fines", ancor: "punish" },
                { text: "Attendance", ancor: "attand" },
@@ -33,24 +32,32 @@ const Nav = ({isMenu, setIsMenu}) => {
           ],
           "Choir discipline": [
                { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
+               { text: "Announcements", ancor: "ann" },
                { text: "Unpaid Services", ancor: "unpaid" },
                { text: "Manage Fines", ancor: "manage" },
+               { text: "Choir Members", ancor: "members" },
+               { text: "Attendance", ancor: "attend" },
           ],
-          accountant: [
+          "accountant": [
                { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
+               { text: "Announcements", ancor: "ann" },
                { text: "Add Fines", ancor: "punish" },
                { text: "Manage Fines", ancor: "manage" },
+               { text: "Choir Members", ancor: "members" },
           ],
-          secretary: [
+          "secretary": [
                { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },
-               { text: "Events", ancor: "events" },
+               { text: "Choir Members", ancor: "members" },
+               { text: "Attendance", ancor: "attend" },
           ],
           "Choir Member": [
                { text: "Home", ancor: "" },
                { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },
-               { text: "Events", ancor: "events" },
                { text: "Choir Members", ancor: "members" },
           ],
      };
@@ -70,7 +77,7 @@ const Nav = ({isMenu, setIsMenu}) => {
                               }}>{link.text}</Link>
                          )
                     })}
-                    <button className={`text-lg indent-[3rem] font-semibold text-left`} onClick={logout}>Log Out</button>
+                    <button className={`text-lg indent-[3rem] font-semibold text-left`} onClick={logout}>Sohoka</button>
                </div>
                <div className={`w-1/3 h-full bg-gray-600 opacity-50`} onClick={() => setIsMenu(false)}></div>
           </div>

@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
           axios.post(`${backendApi}/api/auth/login`, { username: loginUsername, password: loginPassword }).then(response => {
                setLoading(false)
                localStorage.setItem("HMS_USER", JSON.stringify(response.data.user))
-               toast.success("Login Successful")
+               toast.success("Byakunze")
                setTimeout(() => {
                     navigate('/user')
                }, 3000);
@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
                if (error.response && error.response.data) {
                     toast.warn(error.response.data.message);
                } else {
-                    toast.error('Unable to reach server');
+                    toast.error('Kari akabazo');
                }
           })
      }
@@ -45,13 +45,13 @@ export const UserProvider = ({ children }) => {
           event.preventDefault()
           setUpdateLoading(true)
           axios.put(`${backendApi}/api/users/user/${JSON.parse(localStorage.getItem("HMS_USER"))._id}`, { username: usernameU, email: updateEmail }).then(response => {
-               toast.success("Update Successfully")
+               toast.success("Byakunze")
                localStorage.setItem("HMS_USER", JSON.stringify(response.data));
                setUpdateLoading(false)
           }).catch(error => {
                setUpdateLoading(false)
                console.error(error)
-               toast.warn("Unable to update your data")
+               toast.warn("Hari akabazo")
           })
      }
 
@@ -84,7 +84,7 @@ export const UserProvider = ({ children }) => {
                setAllUsers(response.data)
                setAllUsersLoading(false);
           }).catch(error => {
-               toast.warn("Unable to see all Choir Members")
+               toast.warn("Ntidushoboye kubona abamambre")
                console.error("Unable to get all members: ", error)
                setAllUsersLoading(false);
           });

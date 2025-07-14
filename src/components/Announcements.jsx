@@ -47,7 +47,7 @@ const Announcements = () => {
 
      return (
           <>
-               <SearchBar item={"announcement"} itemFunction={handleSearchChange} itemValue={searchQuery} />
+               <SearchBar item={"amatangazo"} itemFunction={handleSearchChange} itemValue={searchQuery} />
                <h2 className={`text-center text-xl font-bold my-[1rem]`}>Announcements</h2>
                <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                     {loadingAnnouncs ? (
@@ -60,10 +60,10 @@ const Announcements = () => {
                          <div className={`min-h-[4rem] rounded bg-gray-400 animate-pulse`}></div>
                               </>
                          ) : announcs.length <= 0 ? (
-                                   <div className={`text-center`}>No Announcement Here</div>
+                                   <div className={`text-center`}>Nta matangazo</div>
                               ) : filteredAnnouncs.length <= 0 ? (
                               <div className={`bg-white p-[1rem] rounded-lg shadow-md shadow-gray-400 min-h-[4rem] break-words`}>
-                                   There is no announcement with &quot;{ searchQuery }&quot; !
+                                   Nta tangazo rifite &quot;{ searchQuery }&quot; !
                               </div>
                          ) : filteredAnnouncs.map((announcement, index) => {
                          return (
@@ -80,12 +80,13 @@ const Announcements = () => {
                                         setPopupDetails({ announcement: {
                                              title: announcement.title, desc: announcement.details, dateOn: announcement.time, timeAt: announcement.createdAt, place: announcement.location
                                         }})
-                                   }}>Details</button>
+                                   }}>Amakuru</button>
+                                   {/* }}>Details</button> */}
                               </div>
                          )
                     })}
                     
-                    {userRole !== 'Choir Member' && <button className={`px-[2rem] py-[.7rem] rounded-lg bg-[#301B84] text-white mx-[5rem]`} onClick={() => setAnnForm(true)}>Add Announcement</button>}
+                    {(userRole !== 'Choir Member') && <button className={`px-[2rem] py-[.7rem] rounded-lg bg-[#301B84] text-white mx-[5rem]`} onClick={() => setAnnForm(true)}>Tangaza</button>}
                </div>
                {popup && <Popups setPopup={setPopup} popupType={popupType} popupDetails={popupDetails} />}
                {annForm && <AddAnnounce setAnnForm={setAnnForm} />}
