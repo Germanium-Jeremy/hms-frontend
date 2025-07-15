@@ -10,8 +10,7 @@ const Popups = ({ setPopup, popupType, popupDetails }) => {
                               <p className={`text-lg`}> <span className={`font-semibold`}>Inshingano:</span> <span className={`text-gray-600`}>{popupDetails.member.role}</span></p>
                          </div>
                          <div className={`flex justify-center pt-[1rem] items-center`}>
-                              <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Wasoje</button>
-                              {/* <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Done</button> */}
+                              <button className={`px-[2rem] py-[.5rem] rounded-lg bg-[#301B84] text-white`} onClick={() => setPopup(false)}>Byakozwe</button>
                          </div>
                     </div>
                ) : popupType == 2 ? (

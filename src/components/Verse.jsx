@@ -21,7 +21,7 @@ const Verse = () => {
           <div className={`px-[1rem] py-[1rem] rounded-lg shadow-md shadow-gray-400 mx-[1rem] mt-[5rem] mb-[5rem]`}>
                <div className="border-l-4 pl-[1rem] flex flex-col gap-3 items-center border-[#301B84]">
                     <p className={`text-gray-600`}>{currentVerse.content}</p>
-                    <p className={`font-bold`}>Verse : {currentVerse.verse} </p>
+                    <p className={`font-bold`}>Umurongo : {currentVerse.verse} </p>
                </div>
           </div>
           </>

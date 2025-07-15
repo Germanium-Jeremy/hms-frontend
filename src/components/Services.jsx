@@ -24,8 +24,7 @@ const Services = () => {
      return (
           <>
           <SearchBar item={"ibihano"} itemFunction={handleSearchChange} itemValue={searchQuery} />
-          <h2 className={`text-center text-xl font-bold my-[1rem]`}>Abishyuye ibihano</h2>
-          {/* <h2 className={`text-center text-xl font-bold my-[1rem]`}>Payment Status</h2> */}
+          <h2 className={`text-center text-xl font-bold my-[1rem]`}>Imimerere yo kwishyura</h2>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                {finesUnpaidLoading ? (
                     <>
@@ -53,7 +52,6 @@ const Services = () => {
                               <div className={`flex justify-between px-[1rem] items-center`}>
                                    {markLoading ? <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-gray-400`}>Tegereza...</button> : 
                                         <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={async() => await markFinePaid(fine._id)}>Yishyuye</button>
-                                        // <button className={`px-[1rem] py-[.4rem] rounded-lg text-white bg-[#301B84]`} onClick={async() => await markFinePaid(fine._id)}>Mark as paid</button>
                                    }
                                    <span className={`px-[1rem] py-[.4rem] text-white bg-[#301B84] rounded-lg`}>{fine.amount}</span>
                               </div>

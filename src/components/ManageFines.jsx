@@ -30,8 +30,7 @@ const ManageFines = () => {
      return (
           <>
           <SearchBar item={"kwizina"} itemFunction={handleSearchChange} itemValue={searchQuery} />
-          <h2 className={`text-center text-xl font-bold my-[1rem]`}>Kurikirana Ibihano</h2>
-          {/* <h2 className={`text-center text-xl font-bold my-[1rem]`}>Manage Fines</h2> */}
+          <h2 className={`text-center text-xl font-bold my-[1rem]`}>Gucunga amande</h2>
           <p className={`text-white bg-[#301B84] mx-[1rem] rounded-lg py-[.5rem] px-[1rem] flex justify-between`}> <i>Izina</i> <i>Amande</i> <i>Impamvu</i> <i>Icyakozwe</i> </p>
           <div className={`mx-[1rem] px-[1rem] mb-[5rem] py-[2rem] rounded-lg shadow-lg shadow-gray-400 bg-gray-200 flex flex-col gap-[1rem]`}>
                {finesUnpaidLoading ? (

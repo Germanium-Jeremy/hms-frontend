@@ -28,7 +28,7 @@ const Today = () => {
           } catch (error) {
                setLoading(false);
                if (error.response.data.message.toLowerCase().includes("no attendance records found")) {
-                    toast.warn("Nta attandance yabonetse");
+                    toast.warn("Ntitubashije kubona abitabiriye!");
                } else {
                     toast.warn("Habayemo akabazo!");
                }
@@ -59,7 +59,7 @@ const Today = () => {
                <div className={`px-[2rem] py-[1rem] flex flex-col items-center`}>
                     {dateAt === null ? (
                          <div className={`text-center text-lg font-semibold`}>
-                              Hitamo itariki kugirango urebe attandance yaho.
+                              Hitamo itariki kugirango urebe abitabiriye.
                          </div>
                     ) : (
                          attendances.length > 0 ? (
@@ -69,7 +69,7 @@ const Today = () => {
                                              {userData[individual] ? (
                                                   <div>
                                                        <strong>UID:</strong> {individual} <br />
-                                                       <strong>Izina:</strong> {userData[individual].name} <br />
+                                                       <strong>Izina ry'ukoresha:</strong> {userData[individual].name} <br />
                                                        <strong>Imeli:</strong> {userData[individual].email} <br />
                                                        {/* Add more fields as needed */}
                                                   </div>
@@ -81,7 +81,7 @@ const Today = () => {
                               </ul>
                          ) : (
                               <div className={`text-center text-lg font-semibold`}>
-                                   Nta attandance yo ku tariki mwahisemo!
+                                   Nta bitabiriye kuri iyo tariki mwahisemo!
                               </div>
                          )
                     )}

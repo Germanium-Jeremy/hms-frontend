@@ -26,7 +26,7 @@ const UserData = () => {
                <form className={`flex flex-col pt-[1rem] w-full`} onSubmit={handleEditUser}>
                     <div className={`px-4 border-l-4 pt-[1rem] border-[#301B84] w-full`}>
                          <article className={`flex w-full gap-3 items-center`}>
-                              <label htmlFor="username" className={`font-semibold text-lg`}>Izina:</label>
+                              <label htmlFor="username" className={`font-semibold text-lg`}>Izina ry'ukoresha:</label>
                               <input type="text" id='username' className={`border-none outline-none text-gray-700 py-1`} placeholder='John Doe' value={usernameU} onChange={(e) => setUpdateUsername(e.target.value)} />
                          </article>
                          <article className={`flex w-full gap-3 items-center`}>
@@ -38,7 +38,7 @@ const UserData = () => {
                               <div className={`border-none outline-none text-gray-700 py-1`}>{(new Date(loggedInAccount.memberSince)).toDateString() || "Tegereza..."}</div>
                          </article>
                          <article className={`flex w-full gap-3 items-center`}>
-                              <span className={`font-semibold text-lg`}>Inshingano:</span>
+                              <span className={`font-semibold text-lg`}>Uruhare:</span>
                               {loggedInAccount == [] ? (<span className={`border-none outline-none bg-gray-300 h-[.8rem] w-full rounded animate-pulse`}></span>) : (
                                    <div className={`border-none outline-none text-gray-700 py-1`}>{loggedInAccount.role || "Tegereza..."}</div>
                               )}                              

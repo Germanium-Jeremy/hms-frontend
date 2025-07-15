@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Popups from './Popups'
 import { UserContext } from './context/UserContext'
 
 const Nav = ({isMenu, setIsMenu}) => {
@@ -39,7 +38,7 @@ const Nav = ({isMenu, setIsMenu}) => {
                { text: "Choir Members", ancor: "members" },
                { text: "Attendance", ancor: "attend" },
           ],
-          "accountant": [
+          "Choir Accountant": [
                { text: "Home", ancor: "" },
                { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },
@@ -47,7 +46,7 @@ const Nav = ({isMenu, setIsMenu}) => {
                { text: "Manage Fines", ancor: "manage" },
                { text: "Choir Members", ancor: "members" },
           ],
-          "secretary": [
+          "Choir secretary": [
                { text: "Home", ancor: "" },
                { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },
@@ -55,6 +54,12 @@ const Nav = ({isMenu, setIsMenu}) => {
                { text: "Attendance", ancor: "attend" },
           ],
           "Choir Member": [
+               { text: "Home", ancor: "" },
+               { text: "Choir Songs", ancor: "songs" },
+               { text: "Announcements", ancor: "ann" },
+               { text: "Choir Members", ancor: "members" },
+          ],
+          "Choir coach": [
                { text: "Home", ancor: "" },
                { text: "Choir Songs", ancor: "songs" },
                { text: "Announcements", ancor: "ann" },

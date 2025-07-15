@@ -85,53 +85,55 @@ const Signup = () => {
                     <h2 className={`font-bold text-xl text-center pt-[5rem]`}>Sign up</h2>
                     <div className={`flex flex-col gap-[1rem] py-[2rem]`}>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="name">Your Name</label>
-                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="name" placeholder="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                              <label htmlFor="name">Amazina yawe</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="name" placeholder="Amazina yawe" value={name} onChange={(e) => setName(e.target.value)} required />
                               {}
                          </article>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="email">Your Email</label>
+                              <label htmlFor="email">Imeli</label>
                               <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="email" id="email" placeholder="email" value={emailSign} onChange={(e) => setEmailSign(e.target.value)} required />
                               {}
                          </article>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="username">Your Username</label>
-                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="username" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                              <label htmlFor="username">Izina ry'ukoresha</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="text" id="username" placeholder="Izina ry'ukoresha" value={username} onChange={(e) => setUsername(e.target.value)} required />
                               {}
                          </article>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="password">Your Password</label>
-                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="password" id="password" placeholder="password" value={passwordSign} onChange={(e) => setPasswordSign(e.target.value)} required />
+                              <label htmlFor="password">Ijambo ry'ibanga</label>
+                              <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="password" id="password" placeholder="Ijambo ry'ibanga" value={passwordSign} onChange={(e) => setPasswordSign(e.target.value)} required />
                               {}
                          </article>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="profile">Select Your Profile</label>
+                              <label htmlFor="profile">Hitamo ifoto</label>
                               <input className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} type="file" id="profile" onChange={handleFileChange} />
                               {}
                          </article>
                          <article className={`flex flex-col gap-1`}>
-                              <label htmlFor="role">Select Your Role</label>
+                              <label htmlFor="role">Hitamo uruhare rwawe</label>
                               <select className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} id="role" onChange={(e) => setRole(e.target.value)} >
-                                   <option value="Choir Member">Choir Member</option>
-                                   <option value="Choir Leader">President</option>
-                                   <option value="Choir discipline">Disciplinary</option>
-                                   <option value="Choir coach">Coach</option>
+                                   <option value="Choir Member">Umuvandimwe wo muri korari</option>
+                                   <option value="Choir secretary">Umunyamabanga wa korali</option>
+                                   <option value="Choir accountant">Umucungamari w'itorero</option>
+                                   <option value="Choir Leader">Umuyobozi wa Korali</option>
+                                   <option value="Choir discipline">Ushinzwe imwitwarire</option>
+                                   <option value="Choir coach">Umutoza</option>
                               </select>
                               {}
                          </article>
                     </div>
                     {loading ? (
                          <button disabled className={`bg-gray-700 rounded-lg w-full text-white py-[.5rem] px-[2rem] mb-5 flex gap-[1rem] justify-center items-center`} >
-                              <span>Wait</span>
+                              <span>Tegereza</span>
                               <p className={`rounded-full border-b-2 border-t-2 animate-spin w-[1.5rem] h-[1.5rem]`}></p>
                          </button>
                     ) : (
                          <button type="submit" className={`bg-[#40a] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`}>
-                              <span>Register</span>
+                              <span>Kora konti</span>
                               <FaAngleRight className={`right-2 absolute top-1/3`} />
                          </button>
                     )}
-                    <p>Have an account? <Link className={`text-[#301B84] font-bold`} to={'/'}>Log In</Link> </p>
+                    <p>Ufite konti? <Link className={`text-[#301B84] font-bold`} to={'/'}>Ingira</Link> </p>
                </form>
           </div>
      );

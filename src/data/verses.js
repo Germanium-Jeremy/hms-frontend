@@ -2,41 +2,41 @@ export const bibleVersers = [
      {
           id: 1,
           verse: "Isaiah 40:31",
-          content: "Those who hope in the Lord will be renewed with strength, and will be able to run without growing weary, and walk without being faint."
+          content: "Abiringira Uwiteka bazasubizwamo imbaraga, baziruka badatsinzwe, bazagenda badacogora."
      },
      {
           id: 2,
           verse: "Jeremiah 29:11",
-          content: "The Lord has a plan for each of us, to give us hope and a future. "
+          content: "Imana ifite umugambi kuri buri wese muri twe, wo kuduha ibyiringiro n'igihe kizaza."
      },
      {
           id: 3,
           verse: "Isaiah 41:10",
-          content: "God will strengthen and help us, and uphold us with his righteous right hand."
+          content: "Imana izadukomeza kandi idufashe, kandi izadushyigikira ikoresheje ukuboko kwayo kw'iburyo gukiranuka."
      },
      {
           id: 4,
           verse: "Hebrews 11:1",
-          content: "Faith is confidence in what we hope for, and assurance about what we do not see."
+          content: "Kwizera ni ukumenya rwose ibyiringirwa udashidikanya ko bitazaba, kandi ni ko kuduhamiriza ibyo tutareba ko ari iby'ukuri."
      },
      {
           id: 5,
           verse: "Romans 15:13",
-          content: "The God of hope will fill us with joy and peace, so that we may overflow with hope."
+          content: "Imana nyir'ibyiringiro izatuzuzamo ibyishimo n'amahoro, kugira ngo tugire ibyiringiro birenze urugero."
      },
      {
           id: 6,
           verse: "Psalm 42:11",
-          content: "Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God."
+          content: "Mutima wanjye, ni iki gitumye wiheba? Ni iki gituma muri jye havuka impagarara bene aka kageni? Izere Imana, kuko nzongera kuyisingiza, yo mukiza wanjye n'Imana yanjye."
      },
      {
           id: 7,
           verse: "Proverbs 23:17-18",
-          content: "17. Do not let your heart envy sinners, but always be zealous for the fear of the Lord.  18. There is surely a future hope for you, and your hope will not be cut off."
+          content: "17. Umutima wawe ntukagirire ishyari abanyabyaha, ahubwo buri gihe ujye ugira ishyaka ryo gutinya Umwami. 18. Nta gushidikanya ko ufite ibyiringiro by'igihe kizaza, kandi ibyiringiro byawe ntibizakurwaho."
      },
      {
           id: 8,
           verse: "Psalm 130:7",
-          content: "Israel, put your hope in the Lord, for with the Lord is unfailing love and with him is full redemption."
+          content: "Bisiraheli, mujye mwiringira Uwiteka, kuko Uwiteka ari umunyambabazi, kandi ni we utanga agakiza kose."
      },
 ]

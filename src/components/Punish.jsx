@@ -94,7 +94,6 @@ const Punish = () => {
           
           axios.post(`${backendApi}/api/fines`, finesToSubmit).then(response => {
                toast.success("Byakunze");
-               // toast.success("Submitted successfully");
                setLoading(false)
                setIsDisabled(true)
                localStorage.setItem("FinesButtonClicked", new Date().toISOString());
