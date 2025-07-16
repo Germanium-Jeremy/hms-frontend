@@ -9,7 +9,7 @@ const Login = () => {
      return (
           <div className={`w-screen h-screen px-[1rem] text-black flex items-center justify-center`}>
                <form className={`rounded-lg shadow-2xl shadow-gray-400 px-[1rem] py-[2rem] w-full`} onSubmit={handleLogin}>
-                    <h2 className={`font-bold text-xl text-center`}>Ingira</h2>
+                    <h2 className={`font-bold text-xl text-center`}>Injira</h2>
                     <div className={`flex flex-col gap-[1rem] my-[3rem]`}>
                          <article className={`flex flex-col gap-1`}>
                               <label htmlFor="username">Izina ry'ukoresha</label>
@@ -29,7 +29,7 @@ const Login = () => {
                          </button>
                     ) : (
                          <button className={`bg-[#301B84] rounded-lg relative w-full text-white py-[.5rem] px-[2rem] mb-5`}>
-                              <span>Ingira</span>
+                              <span>Injira</span>
                               <FaAngleRight className={`right-2 absolute top-1/3`} />
                          </button>
                     )}

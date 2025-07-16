@@ -1,18 +1,20 @@
 const makeDateReadable = (date) => {
      const date2 = new Date(date);
-
+ 
      const options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
+         weekday: "long",
+         year: "numeric",
+         month: "long",
+         day: "numeric",
+         hour: "numeric",
+         minute: "numeric",
+         second: "numeric",
+         timeZone: 'Africa/Kigali'
      };
-
-     const humanReadableDate = date2.toLocaleString("en-US", options);
-     return humanReadableDate
+ 
+     // Ensure the locale is set to 'rw-RW'
+     const humanReadableDate = new Intl.DateTimeFormat('rw-RW', options).format(date2);
+     return humanReadableDate;
 }
 
 const truncateText = (fullNames, limit) => {

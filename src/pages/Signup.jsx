@@ -25,26 +25,6 @@ const Signup = () => {
           setLoading(true)
           console.log("User Data", name, emailSign, username, passwordSign, role, profileImageUrl)
 
-          // axios.post(`${backendApi}/api/auth/register`, { name: name, email: emailSign, username: username, password: passwordSign, role: role, profileImageUrl: profileImageUrl ? profileImageUrl : null }, {
-          //      headers: { "Content-Type": "multipart/form-data", }
-          // }).then(response => {
-          //      setLoading(false)
-          //      localStorage.setItem("HMS_USER", JSON.stringify(response.data))
-          //      toast.success("Account created Successfully")
-          // }).catch(error => {
-          //      setLoading(false)
-          //      if (error) {
-          //           console.log(error)
-          //      }
-          //      if (error.response.data) {
-          //           console.log("Error response data", error.response.data)
-          //           error.response.data?.error ? toast.warn(error.response.data.error.message) : toast.warn(error.response.data.message)
-          //      } else {
-          //           toast.error('Unable to reach server');
-          //      }
-          // })
-
-
           const formData = new FormData();
           formData.append("name", name)
           formData.append("email", emailSign)
@@ -60,12 +40,13 @@ const Signup = () => {
                     },
                });
                setLoading(false);
-               toast.success("Account created Successfully");
+               toast.success("Byakunze");
                setTimeout(() => {
                  navigate("/");
                }, 3000);
           } catch (error) {
                setLoading(false)
+               console.log(error)
                if (error.response.data) {
                     console.log("Error response data", error.response.data)
                     error.response.data?.error ? toast.warn(error.response.data.error.message) : toast.warn(error.response.data.message)
@@ -112,9 +93,9 @@ const Signup = () => {
                          <article className={`flex flex-col gap-1`}>
                               <label htmlFor="role">Hitamo uruhare rwawe</label>
                               <select className={`rounded-lg border outline-none border-gray-400 text-gray-700 indent-3 py-2 px-1`} id="role" onChange={(e) => setRole(e.target.value)} >
-                                   <option value="Choir Member">Umuvandimwe wo muri korari</option>
-                                   <option value="Choir secretary">Umunyamabanga wa korali</option>
-                                   <option value="Choir accountant">Umucungamari w'itorero</option>
+                                   <option value="Choir Member">Umuririmbyi</option>
+                                   <option value="Choir secretary">Umunyamabanga</option>
+                                   <option value="Choir accountant">Umucungamari</option>
                                    <option value="Choir Leader">Umuyobozi wa Korali</option>
                                    <option value="Choir discipline">Ushinzwe imwitwarire</option>
                                    <option value="Choir coach">Umutoza</option>
@@ -133,7 +114,7 @@ const Signup = () => {
                               <FaAngleRight className={`right-2 absolute top-1/3`} />
                          </button>
                     )}
-                    <p>Ufite konti? <Link className={`text-[#301B84] font-bold`} to={'/'}>Ingira</Link> </p>
+                    <p>Ufite konti? <Link className={`text-[#301B84] font-bold`} to={'/'}>Injira</Link> </p>
                </form>
           </div>
      );

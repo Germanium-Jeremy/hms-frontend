@@ -34,12 +34,21 @@ export const FinesProvider = ({ children }) => {
                     const summary = unpaidFinesForUser.map(fine => `${fine.amount} FRW for ${fine.reason}`).join(', ')
                     setUserFines(summary)
                } else {
-                    setUserFines('You have paid all fines')
+                    setUserFines('Wishyuye ibihano byose')
                }
                setUserFinesLoading(false)
           }).catch(error => {
-               if (error?.response.status == 500) toast.warn("Can not get your fines")
-               if (error.response.status == 404 && error.response.data.message == "No fines found for this user.") setUserFines(error.response.data.message)
+               console.error(error)
+               // console.warn("Error fines, ", error)
+               // if (error?.response.status == 500) toast.warn("Can not get your fines")
+               if (error.message.toLowerCase().includes("Network Error".toLowerCase())) {
+                    setUserFines("Nta interineti ufite")
+               } else 
+               if (error.response.status == 404 && error.response.data.message == "No fines found for this user.") {
+                    setUserFines(error.response.data.message)
+               } else {
+                 setUserFines("Hari akabazo");
+               }
                setUserFinesLoading(false)
           })
      }

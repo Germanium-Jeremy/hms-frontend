@@ -26,6 +26,7 @@ export const UserProvider = ({ children }) => {
           setLoading(true)
           axios.post(`${backendApi}/api/auth/login`, { username: loginUsername, password: loginPassword }).then(response => {
                setLoading(false)
+               console.log(response.data.user)
                localStorage.setItem("HMS_USER", JSON.stringify(response.data.user))
                toast.success("Byakunze")
                setTimeout(() => {
@@ -74,10 +75,6 @@ export const UserProvider = ({ children }) => {
           localStorage.removeItem("HMS_USER")
           window.location = '/'
      }
-
-     // useEffect(() => {
-     //      JSON.parse(localStorage.getItem("HMS_USER")) ? getUserInfo() : navigate('/')
-     // }, [])
 
      const getAllMembers = async () => {
           axios.get(`${backendApi}/api/users`).then(response => {
