@@ -74,7 +74,7 @@ const Members = () => {
                     })}
                          {(userRole !== 'Choir Member' || userRole !== 'secretary' || userRole !== 'accountant') &&
                               <button className={`px-[2rem] py-[.7rem] rounded-lg bg-[#301B84] text-white mx-[3rem]`}>
-                                   Ongeramo umuvandimwe
+                                   Ongeramo umuririmbyi
                               </button>
                          }
                </div>
